@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { Box, Flex, Heading, Text, Link } from "@chakra-ui/react";
+import { Box, Heading, Text, Link, VStack } from "@chakra-ui/react";
 import Image from "next/image";
 
 export default function Home() {
@@ -11,8 +11,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Flex
-        direction="column"
+      <VStack
         alignItems="center"
         justifyContent="center"
         h="100vh"
@@ -21,7 +20,7 @@ export default function Home() {
         <Text fontSize="lg" mb={6}>
           Get started by editing <code>pages/index.tsx</code>
         </Text>
-      </Flex>
+      </VStack>
 
       <Box as="footer" textAlign="center" p={4}>
         <Link
