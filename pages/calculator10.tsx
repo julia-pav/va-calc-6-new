@@ -1,5 +1,5 @@
 import { Flex, Text, IconButton } from '@chakra-ui/react'
-import { FiMenu } from 'react-icons/fi'
+import  CalcBase10  from "../components/calculators/CalcBase10"
 
 export default function Home() {
 	return (
@@ -10,7 +10,8 @@ export default function Home() {
 				left='50%'
 				transform='translate(-50%, -50%)'
 			>
-Calculator Base 10
+Calculator Base 10 
+<CalcBase10 />
 			</Flex>
 		</Flex>
 	)
