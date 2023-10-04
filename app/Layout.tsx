@@ -1,8 +1,8 @@
 export default function Layout({ children }: React.PropsWithChildren<{}>) {
-  return (
-    <div>
-      <div>Hello</div>
-      {children}
-    </div>
-  );
+	return (
+		<div>
+			<div>Here is available some layout</div>
+			{children}
+		</div>
+	)
 }
