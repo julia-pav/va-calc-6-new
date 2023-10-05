@@ -10,8 +10,8 @@ export default function Home() {
 				left='50%'
 				transform='translate(-50%, -50%)'
 			>
-Calculator Base 10 
-<CalcBase10 />
+				Calculator Base 10 
+				<CalcBase10 />
 			</Flex>
 		</Flex>
 	)
