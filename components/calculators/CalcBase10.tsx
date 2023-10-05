@@ -108,6 +108,8 @@ type Direction =
     onClick: () => void;
   };
 
+ 
+
 function CalcBase10() {
 
     const [currentAction, setCurrentAction] = useState<string>('Action_init');
@@ -200,12 +202,12 @@ function CalcBase10() {
         </p>
         <p>
            | 
-          <DigitOne onClick={() => getAction('Direction_one')}/>&nbsp;|
-          <DigitTwo onClick={() => getAction('Direction_two')}/>&nbsp;|
-          <DigitThree onClick={() => getAction('Direction_three')}/>&nbsp;|
-          <ActionPlus onClick={() => getAction('Direction_plus')}/>&nbsp;|
-          <ActionEqual onClick={() => getAction('Direction_equal')}/>&nbsp;|
-          <ActionClear onClick={() => getAction('Direction_clear')}/>&nbsp;|
+            <ActionButton label="[ 1 ]" action="Direction_one" onClick={getAction} />&nbsp;|
+            <ActionButton label="[ 2 ]" action="Direction_two" onClick={getAction} />&nbsp;|
+            <ActionButton label="[ 3 ]" action="Direction_three" onClick={getAction} />&nbsp;|
+            <ActionButton label="[ + ]" action="Direction_plus" onClick={getAction} />&nbsp;|
+            <ActionButton label="[ = ]" action="Direction_equal" onClick={getAction} />&nbsp;|
+            <ActionButton label="[ CA ]" action="Direction_clear" onClick={getAction} />&nbsp;|
         </p>
         <p>
         <img src="v-agent_32x32.png" alt="v-agent" width="32" height="32" /> &nbsp;  Powered by VAOP  
@@ -218,28 +220,10 @@ function CalcBase10() {
   );
 }
 
-function DigitOne({ onClick }: ButtonProps) {
-    return <button onClick={onClick}>[ 1 ]</button>;
+function ActionButton({ label, action, onClick }: { label: string, action: string, onClick: (action: string) => void }) {
+  return <button onClick={() => onClick(action)}>{label}</button>;
 }
-  
-function DigitTwo({ onClick }: ButtonProps) {
-    return <button onClick={onClick}>[ 2 ]</button>;
-}
-  
-function DigitThree({ onClick }: ButtonProps) {
-    return <button onClick={onClick}>[ 3 ]</button>;
-}
-  
-function ActionPlus({ onClick }: ButtonProps) {
-    return <button onClick={onClick}>[ + ]</button>;
-}
-  
-function ActionEqual({ onClick }: ButtonProps) {
-    return <button onClick={onClick}>[ = ]</button>;
-}
-  
-function ActionClear({ onClick }: ButtonProps) {
-    return <button onClick={onClick}>[ CA ]</button>;
-}
+
+
 
 export default CalcBase10;
