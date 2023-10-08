@@ -1,6 +1,4 @@
-//import './App.css';
 import { useState } from 'react';
-//import vaScript from './vaScriptBase10_v1.json';
 import vaScript from '../../public/vaop/va-scripts/vaScriptBase10_v1.json';
 
 
@@ -23,9 +21,6 @@ type Direction =
     [direction in Direction]: string;
   };
 
-  //const vaScript: Record<keyof typeof vaScript, VaScriptAction> = {
-  //"Action_init":{
-
 
   type ButtonProps = {
     onClick: () => void;
@@ -35,9 +30,7 @@ type Direction =
 
 function CalcBase10() {
 
-    //const [currentAction, setCurrentAction] = useState<string>('Action_init');
     const [currentAction, setCurrentAction] = useState<keyof typeof vaScript>('Action_init');
-
     const [previousAction, setPreviousAction] = useState<string>('Action_init');
     const [directionAction, setDirectionAction] = useState<Direction>('Direction_init');
     const [operandOne, setOperandOne] = useState<string>('');
@@ -45,8 +38,6 @@ function CalcBase10() {
     const [result, setResult] = useState<string>('');
     const [warningMsg, setWarningMsg] = useState<string>('');
 
-
-    //function getAction(direction: Direction) {
     function getAction(direction: keyof typeof vaScript['Action_init']) {
 
       console.log('Click!!!'); 
