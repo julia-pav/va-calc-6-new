@@ -2,6 +2,7 @@ import { Flex, Text, IconButton, Button, VStack, HStack } from '@chakra-ui/react
 import { useState } from 'react';
 
 type Direction =
+  | "Direction_init"
   | "Direction_one"
   | "Direction_two"
   | "Direction_three"
@@ -19,7 +20,7 @@ type Direction =
     [direction in Direction]: string;
   };
 
-  const vaScript: Record<keyof typeof vaScript, VaScriptAction> = {
+  const vaScript = {
   "Action_init":{
      "Direction_one":"Action_operand_1_attach_one",
      "Direction_two":"Action_operand_1_attach_two",     
@@ -477,7 +478,7 @@ function CalcBase10() {
         <Text fontSize='25px' color='black'>
           &nbsp; 
         </Text>   
-        <Text fontSize='25px' color='red'>
+        <Text as='i' fontSize='25px' color='red'>
           {warningMsg} 
         </Text>
         <Text fontSize='25px' color='red'>
@@ -485,27 +486,27 @@ function CalcBase10() {
         </Text>      
           <VStack spacing={3} align="start">
             <HStack spacing={4}>
-              <ActionButton colorB='blue' label="[ 1 ]" action="Direction_one" onClick={getAction} />
-              <ActionButton colorB='blue' label="[ 2 ]" action="Direction_two" onClick={getAction} />
-              <ActionButton colorB='blue' label="[ 3 ]" action="Direction_three" onClick={getAction} />
+              <ActionButton colorB='blue' label="[ 1 ]" direction="Direction_one" onClick={getAction} />
+              <ActionButton colorB='blue' label="[ 2 ]" direction="Direction_two" onClick={getAction} />
+              <ActionButton colorB='blue' label="[ 3 ]" direction="Direction_three" onClick={getAction} />
             </HStack>
 
             <HStack spacing={4}>
-              <ActionButton colorB='blue' label="[ 4 ]" action="Direction_four" onClick={getAction} />
-              <ActionButton colorB='blue' label="[ 5 ]" action="Direction_five" onClick={getAction} />
-              <ActionButton colorB='blue' label="[ 6 ]" action="Direction_six" onClick={getAction} />
+              <ActionButton colorB='blue' label="[ 4 ]" direction="Direction_four" onClick={getAction} />
+              <ActionButton colorB='blue' label="[ 5 ]" direction="Direction_five" onClick={getAction} />
+              <ActionButton colorB='blue' label="[ 6 ]" direction="Direction_six" onClick={getAction} />
             </HStack>
 
             <HStack spacing={4}>
-              <ActionButton colorB='blue' label="[ 7 ]" action="Direction_seven" onClick={getAction} />
-              <ActionButton colorB='blue' label="[ 8 ]" action="Direction_eight" onClick={getAction} />
-              <ActionButton colorB='blue' label="[ 9 ]" action="Direction_nine" onClick={getAction} />
+              <ActionButton colorB='blue' label="[ 7 ]" direction="Direction_seven" onClick={getAction} />
+              <ActionButton colorB='blue' label="[ 8 ]" direction="Direction_eight" onClick={getAction} />
+              <ActionButton colorB='blue' label="[ 9 ]" direction="Direction_nine" onClick={getAction} />
             </HStack>
 
             <HStack spacing={4}>
-              <ActionButton colorB='gray' label="[ + ]" action="Direction_plus" onClick={getAction} />
-              <ActionButton colorB='gray' label="[ = ]" action="Direction_equal" onClick={getAction} />
-              <ActionButton colorB='gray' label="[ CA ]" action="Direction_clear" onClick={getAction} />
+              <ActionButton colorB='gray' label="[ + ]" direction="Direction_plus" onClick={getAction} />
+              <ActionButton colorB='gray' label="[ = ]" direction="Direction_equal" onClick={getAction} />
+              <ActionButton colorB='gray' label="[ CA ]" direction="Direction_clear" onClick={getAction} />
             </HStack>
           </VStack>
    
@@ -520,9 +521,9 @@ function CalcBase10() {
   );
 }
 
-function ActionButton({ colorB, label, action, onClick }: { colorB: string; label: string; action: string; onClick: (action: string) => void }) {
+function ActionButton({ colorB, label, direction, onClick }: { colorB: string; label: string; direction: Direction; onClick: (direction: Direction) => void }) {
   return (
-    <Button colorScheme={colorB} onClick={() => onClick(action)}>
+    <Button colorScheme={colorB} onClick={() => onClick(direction)}>
       {label}
     </Button>
   );
