@@ -1,4 +1,4 @@
-//import './App.css';
+import { Flex, Text, IconButton, Button } from '@chakra-ui/react'
 import { useState } from 'react';
 
 type Direction =
@@ -502,9 +502,14 @@ function CalcBase10() {
   );
 }
 
-function ActionButton({ label, action, onClick }: { label: string, action: string, onClick: (action: string) => void }) {
-  return <button onClick={() => onClick(action)}>{label}</button>;
+function ActionButton({ label, action, onClick }: { label: string; action: string; onClick: (action: string) => void }) {
+  return (
+    <Button colorScheme="blue" onClick={() => onClick(action)}>
+      {label}
+    </Button>
+  );
 }
+
 
 
 
