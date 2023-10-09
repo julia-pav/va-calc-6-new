@@ -1,4 +1,4 @@
-//import './App.css';
+import { Flex, Text, IconButton, Button, VStack, HStack } from '@chakra-ui/react'
 import { useState } from 'react';
 
 type Direction =
@@ -477,19 +477,32 @@ function CalcBase10() {
         <small>{warningMsg}</small>
         </p>
         <p>
-           | 
-            <ActionButton label="[ 1 ]" action="Direction_one" onClick={getAction} />&nbsp;|
-            <ActionButton label="[ 2 ]" action="Direction_two" onClick={getAction} />&nbsp;|
-            <ActionButton label="[ 3 ]" action="Direction_three" onClick={getAction} />&nbsp;|
-            <ActionButton label="[ 4 ]" action="Direction_four" onClick={getAction} />&nbsp;|
-            <ActionButton label="[ 5 ]" action="Direction_five" onClick={getAction} />&nbsp;|
-            <ActionButton label="[ 6 ]" action="Direction_six" onClick={getAction} />&nbsp;|
-            <ActionButton label="[ 7 ]" action="Direction_seven" onClick={getAction} />&nbsp;|
-            <ActionButton label="[ 8 ]" action="Direction_eight" onClick={getAction} />&nbsp;|
-            <ActionButton label="[ 9 ]" action="Direction_nine" onClick={getAction} />&nbsp;|
-            <ActionButton label="[ + ]" action="Direction_plus" onClick={getAction} />&nbsp;|
-            <ActionButton label="[ = ]" action="Direction_equal" onClick={getAction} />&nbsp;|
-            <ActionButton label="[ CA ]" action="Direction_clear" onClick={getAction} />&nbsp;|
+
+          <VStack spacing={4} align="start">
+            <HStack spacing={4}>
+              <ActionButton label="[ 1 ]" action="Direction_one" onClick={getAction} />
+              <ActionButton label="[ 2 ]" action="Direction_two" onClick={getAction} />
+              <ActionButton label="[ 3 ]" action="Direction_three" onClick={getAction} />
+            </HStack>
+
+            <HStack spacing={4}>
+              <ActionButton label="[ 4 ]" action="Direction_four" onClick={getAction} />
+              <ActionButton label="[ 5 ]" action="Direction_five" onClick={getAction} />
+              <ActionButton label="[ 6 ]" action="Direction_six" onClick={getAction} />
+            </HStack>
+
+            <HStack spacing={4}>
+              <ActionButton label="[ 7 ]" action="Direction_seven" onClick={getAction} />
+              <ActionButton label="[ 8 ]" action="Direction_eight" onClick={getAction} />
+              <ActionButton label="[ 9 ]" action="Direction_nine" onClick={getAction} />
+            </HStack>
+
+            <HStack spacing={4}>
+              <ActionButton label="[ + ]" action="Direction_plus" onClick={getAction} />
+              <ActionButton label="[ = ]" action="Direction_equal" onClick={getAction} />
+              <ActionButton label="[ CA ]" action="Direction_clear" onClick={getAction} />
+            </HStack>
+          </VStack>
         </p>
         <p>
         <img src="v-agent_32x32.png" alt="v-agent" width="32" height="32" /> &nbsp;  Powered by VAOP  
@@ -502,9 +515,14 @@ function CalcBase10() {
   );
 }
 
-function ActionButton({ label, action, onClick }: { label: string, action: string, onClick: (action: string) => void }) {
-  return <button onClick={() => onClick(action)}>{label}</button>;
+function ActionButton({ label, action, onClick }: { label: string; action: string; onClick: (action: string) => void }) {
+  return (
+    <Button colorScheme={"blue" as any} onClick={() => onClick(action)}>
+      {label}
+    </Button>
+  );
 }
+
 
 
 
