@@ -467,18 +467,23 @@ function CalcBase10() {
 
   }
   return (
-    <div className="App">
-      <header className="App-header">
-        <h2>Mini Calculator</h2>
-        <p>
+    <div>
+        <Text fontSize='50px' color='gray'>
+            va-calculator (base 10)
+        </Text>
+        <Text fontSize='25px' color='gray'>
           [{operandOne}] + [{operandTwo}] = [{result}] 
-        </p>
-        <p>
-        <small>{warningMsg}</small>
-        </p>
-        <p>
-
-          <VStack spacing={4} align="start">
+        </Text>
+        <Text fontSize='25px' color='black'>
+          &nbsp; 
+        </Text>   
+        <Text fontSize='25px' color='red'>
+          {warningMsg} 
+        </Text>
+        <Text fontSize='25px' color='red'>
+          &nbsp; 
+        </Text>      
+          <VStack spacing={3} align="start">
             <HStack spacing={4}>
               <ActionButton label="[ 1 ]" action="Direction_one" onClick={getAction} />
               <ActionButton label="[ 2 ]" action="Direction_two" onClick={getAction} />
@@ -503,14 +508,14 @@ function CalcBase10() {
               <ActionButton label="[ CA ]" action="Direction_clear" onClick={getAction} />
             </HStack>
           </VStack>
-        </p>
+   
         <p>
         <img src="v-agent_32x32.png" alt="v-agent" width="32" height="32" /> &nbsp;  Powered by VAOP  
         </p>
         <p>
          <small>previousAction:</small>[{previousAction}] ==&gt; <small>directionAction:</small>[{directionAction}] ==&gt; <small>currentAction:</small>[{currentAction}]
         </p>
-      </header>
+     
     </div>
   );
 }
