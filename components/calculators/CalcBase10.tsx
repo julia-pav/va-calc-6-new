@@ -485,27 +485,27 @@ function CalcBase10() {
         </Text>      
           <VStack spacing={3} align="start">
             <HStack spacing={4}>
-              <ActionButton label="[ 1 ]" action="Direction_one" onClick={getAction} />
-              <ActionButton label="[ 2 ]" action="Direction_two" onClick={getAction} />
-              <ActionButton label="[ 3 ]" action="Direction_three" onClick={getAction} />
+              <ActionButton colorB='blue' label="[ 1 ]" action="Direction_one" onClick={getAction} />
+              <ActionButton colorB='blue' label="[ 2 ]" action="Direction_two" onClick={getAction} />
+              <ActionButton colorB='blue' label="[ 3 ]" action="Direction_three" onClick={getAction} />
             </HStack>
 
             <HStack spacing={4}>
-              <ActionButton label="[ 4 ]" action="Direction_four" onClick={getAction} />
-              <ActionButton label="[ 5 ]" action="Direction_five" onClick={getAction} />
-              <ActionButton label="[ 6 ]" action="Direction_six" onClick={getAction} />
+              <ActionButton colorB='blue' label="[ 4 ]" action="Direction_four" onClick={getAction} />
+              <ActionButton colorB='blue' label="[ 5 ]" action="Direction_five" onClick={getAction} />
+              <ActionButton colorB='blue' label="[ 6 ]" action="Direction_six" onClick={getAction} />
             </HStack>
 
             <HStack spacing={4}>
-              <ActionButton label="[ 7 ]" action="Direction_seven" onClick={getAction} />
-              <ActionButton label="[ 8 ]" action="Direction_eight" onClick={getAction} />
-              <ActionButton label="[ 9 ]" action="Direction_nine" onClick={getAction} />
+              <ActionButton colorB='blue' label="[ 7 ]" action="Direction_seven" onClick={getAction} />
+              <ActionButton colorB='blue' label="[ 8 ]" action="Direction_eight" onClick={getAction} />
+              <ActionButton colorB='blue' label="[ 9 ]" action="Direction_nine" onClick={getAction} />
             </HStack>
 
             <HStack spacing={4}>
-              <ActionButton label="[ + ]" action="Direction_plus" onClick={getAction} />
-              <ActionButton label="[ = ]" action="Direction_equal" onClick={getAction} />
-              <ActionButton label="[ CA ]" action="Direction_clear" onClick={getAction} />
+              <ActionButton colorB='gray' label="[ + ]" action="Direction_plus" onClick={getAction} />
+              <ActionButton colorB='gray' label="[ = ]" action="Direction_equal" onClick={getAction} />
+              <ActionButton colorB='gray' label="[ CA ]" action="Direction_clear" onClick={getAction} />
             </HStack>
           </VStack>
    
@@ -520,9 +520,9 @@ function CalcBase10() {
   );
 }
 
-function ActionButton({ label, action, onClick }: { label: string; action: string; onClick: (action: string) => void }) {
+function ActionButton({ colorB, label, action, onClick }: { colorB: string; label: string; action: string; onClick: (action: string) => void }) {
   return (
-    <Button colorScheme={"blue" as any} onClick={() => onClick(action)}>
+    <Button colorScheme={colorB} onClick={() => onClick(action)}>
       {label}
     </Button>
   );
