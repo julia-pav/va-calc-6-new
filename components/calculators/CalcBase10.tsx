@@ -2,6 +2,35 @@ import vaScript from '../../public/vaop/va-scripts/vaScriptBase10_v1.json';
 import { Flex, Text, IconButton, Button, VStack, HStack } from '@chakra-ui/react'
 import { useState } from 'react';
 
+type Action = 
+  | "Action_init"
+  | "Action_clear"
+  | "Action_show_result"
+  | "Action_operand_1_attach_zero"
+  | "Action_operand_1_attach_one"
+  | "Action_operand_1_attach_two"
+  | "Action_operand_1_attach_three" 
+  | "Action_operand_1_attach_four" 
+  | "Action_operand_1_attach_five"     
+  | "Action_operand_1_attach_six"    
+  | "Action_operand_1_attach_seven"    
+  | "Action_operand_1_attach_eight"   
+  | "Action_operand_1_attach_nine"
+  | "Action_operand_2_attach_zero"
+  | "Action_operand_2_attach_zero"
+  | "Action_operand_2_attach_one"
+  | "Action_operand_2_attach_two"
+  | "Action_operand_2_attach_three" 
+  | "Action_operand_2_attach_four" 
+  | "Action_operand_2_attach_five"     
+  | "Action_operand_2_attach_six"    
+  | "Action_operand_2_attach_seven"    
+  | "Action_operand_1_attach_eight"   
+  | "Action_operand_2_attach_nine"
+  | "Action_waiting_for_operand_2_for_plus"
+  | "Action_warning_10__Second_operand_is_missing";
+
+
 type Direction =
   | "Direction_init"
   | "Direction_zero"
@@ -18,10 +47,13 @@ type Direction =
   | "Direction_equal"
   | "Direction_clear";
 
-  type VaScriptAction = {
+  type VaScriptDirection = {
     [direction in Direction]: string;
   };
-
+  
+  type VaScript = {
+    [key in Action]: VaScriptDirection;
+  };
 
   type ButtonProps = {
     onClick: () => void;
@@ -31,8 +63,8 @@ type Direction =
 
 function CalcBase10() {
 
-    const [currentAction, setCurrentAction] = useState<string>('Action_init');
-    const [previousAction, setPreviousAction] = useState<string>('Action_init');
+    const [currentAction, setCurrentAction] = useState<Action>('Action_init');
+    const [previousAction, setPreviousAction] = useState<Action>('Action_init');
     const [directionAction, setDirectionAction] = useState<Direction>('Direction_init');
     const [operandOne, setOperandOne] = useState<string>('');
     const [operandTwo, setOperandTwo] = useState<string>('');
@@ -46,7 +78,8 @@ function CalcBase10() {
 
     setWarningMsg('');
 
-    const nextAction = vaScript[currentAction][direction];
+    const nextAction = (vaScript as VaScript)[currentAction][direction];
+
   
     if(vaScript.hasOwnProperty(nextAction)){
   
@@ -189,14 +222,14 @@ function CalcBase10() {
 
 
             <HStack spacing={4}>
-              <ActionButton variantB='outline' colorB='teal' label="[ 0 ]" direction="Direction_zero" onClick={getAction} />
-              <ActionButton colorB='gray' label="[ + ]" direction="Direction_plus" onClick={getAction} />
-              <ActionButton colorB='gray' label="[ = ]" direction="Direction_equal" onClick={getAction} />
+              <ActionButton colorB='blue' label="[ 0 ]" direction="Direction_zero" onClick={getAction} />
+              <ActionButton variantB='outline' colorB='gray' label="[ + ]" direction="Direction_plus" onClick={getAction} />
+              <ActionButton variantB='outline' colorB='gray' label="[ = ]" direction="Direction_equal" onClick={getAction} />
             </HStack>
 
             <HStack spacing={4}>
              
-              <ActionButton colorB='gray' label="[ CA ]" direction="Direction_clear" onClick={getAction} />
+              <ActionButton variantB='outline' colorB='gray' label="[ CA ]" direction="Direction_clear" onClick={getAction} />
             </HStack>
           </VStack>
    
