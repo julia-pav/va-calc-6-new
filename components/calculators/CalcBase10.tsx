@@ -180,6 +180,11 @@ function CalcBase10() {
               <ActionButton colorB='blue' label="[ 9 ]" direction="Direction_nine" onClick={getAction} />
             </HStack>
 
+
+            <HStack spacing={4}>
+              <ActionButton variantB='outline' colorB='teal' label="[ 0 ]" direction="Direction_one" onClick={getAction} />
+            </HStack>
+
             <HStack spacing={4}>
               <ActionButton colorB='gray' label="[ + ]" direction="Direction_plus" onClick={getAction} />
               <ActionButton colorB='gray' label="[ = ]" direction="Direction_equal" onClick={getAction} />
@@ -198,15 +203,13 @@ function CalcBase10() {
   );
 }
 
-function ActionButton({ colorB, label, direction, onClick }: { colorB: string; label: string; direction: Direction; onClick: (direction: Direction) => void }) {
+function ActionButton({ variantB='solid', colorB, label, direction, onClick }: { variantB?: string, colorB: string; label: string; direction: Direction; onClick: (direction: Direction) => void }) {
   return (
-    <Button colorScheme={colorB} onClick={() => onClick(direction)}>
+    <Button variant={variantB} colorScheme={colorB} onClick={() => onClick(direction)}>
       {label}
     </Button>
   );
 }
-
-
 
 
 export default CalcBase10;
