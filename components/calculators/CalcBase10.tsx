@@ -2,7 +2,7 @@ import vaScript from '../../public/vaop/va-scripts/vaScriptBase10_v1.json';
 import { Flex, Text, IconButton, Button, VStack, HStack } from '@chakra-ui/react'
 import { useState } from 'react';
 
-type Action = 
+type ActionT = 
   | "Action_init"
   | "Action_clear"
   | "Action_show_result"
@@ -31,7 +31,7 @@ type Action =
   | "Action_warning_10__Second_operand_is_missing";
 
 
-type Direction =
+type DirectionT =
   | "Direction_init"
   | "Direction_zero"
   | "Direction_one"
@@ -47,12 +47,12 @@ type Direction =
   | "Direction_equal"
   | "Direction_clear";
 
-  type VaScriptDirection = {
-    [direction in Direction]: string;
+  type VaScriptDirectionT = {
+    [direction in DirectionT]: string;
   };
   
-  type VaScript = {
-    [key in Action]: VaScriptDirection;
+  type VaScriptT = {
+    [key in ActionT]: VaScriptDirectionT;
   };
 
   type ButtonProps = {
@@ -63,22 +63,22 @@ type Direction =
 
 function CalcBase10() {
 
-    const [currentAction, setCurrentAction] = useState<Action>('Action_init');
-    const [previousAction, setPreviousAction] = useState<Action>('Action_init');
-    const [directionAction, setDirectionAction] = useState<Direction>('Direction_init');
+    const [currentAction, setCurrentAction] = useState<ActionT>('Action_init');
+    const [previousAction, setPreviousAction] = useState<ActionT>('Action_init');
+    const [directionAction, setDirectionAction] = useState<DirectionT>('Direction_init');
     const [operandOne, setOperandOne] = useState<string>('');
     const [operandTwo, setOperandTwo] = useState<string>('');
     const [result, setResult] = useState<string>('');
     const [warningMsg, setWarningMsg] = useState<string>('');
 
 
-    function getAction(direction: Direction) {
+    function getAction(direction: DirectionT) {
     console.log('Click!!!'); 
     console.log(direction); 
 
     setWarningMsg('');
 
-    const nextAction = (vaScript as VaScript)[currentAction][direction];
+    const nextAction = (vaScript as VaScriptT)[currentAction][direction];
 
   
     if(vaScript.hasOwnProperty(nextAction)){
