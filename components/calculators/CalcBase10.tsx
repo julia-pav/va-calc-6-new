@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 type Direction =
   | "Direction_init"
+  | "Direction_zero"
   | "Direction_one"
   | "Direction_two"
   | "Direction_three"
@@ -60,14 +61,17 @@ function CalcBase10() {
           setOperandTwo('');
           setResult('')
           break;
-          case "Action_show_result":
+        case "Action_show_result":
             var temp = +operandOne + +operandTwo;
             setResult(temp);
             break;
-        case "Action_operand_1_attach_one":
-          setOperandOne(operandOne + '1')
+        case "Action_operand_1_attach_zero":
+          setOperandOne(operandOne + '0')
           break;
-        case "Action_operand_1_attach_two":
+        case "Action_operand_1_attach_one":
+            setOperandOne(operandOne + '1')
+            break;
+          case "Action_operand_1_attach_two":
           setOperandOne(operandOne + '2')
           break;
         case "Action_operand_1_attach_three":
@@ -94,9 +98,12 @@ function CalcBase10() {
         case "Action_waiting_for_operand_2_for_plus":
           // do nothing
           break;
-        case "Action_operand_2_attach_one":
-          setOperandTwo(operandTwo + '1')
+        case "Action_operand_2_attach_zero":
+          setOperandTwo(operandTwo + '0')
           break;
+        case "Action_operand_2_attach_one":
+            setOperandTwo(operandTwo + '1')
+            break;
         case "Action_operand_2_attach_two":
           setOperandTwo(operandTwo + '2')
           break;
@@ -182,12 +189,13 @@ function CalcBase10() {
 
 
             <HStack spacing={4}>
-              <ActionButton variantB='outline' colorB='teal' label="[ 0 ]" direction="Direction_one" onClick={getAction} />
+              <ActionButton variantB='outline' colorB='teal' label="[ 0 ]" direction="Direction_zero" onClick={getAction} />
+              <ActionButton colorB='gray' label="[ + ]" direction="Direction_plus" onClick={getAction} />
+              <ActionButton colorB='gray' label="[ = ]" direction="Direction_equal" onClick={getAction} />
             </HStack>
 
             <HStack spacing={4}>
-              <ActionButton colorB='gray' label="[ + ]" direction="Direction_plus" onClick={getAction} />
-              <ActionButton colorB='gray' label="[ = ]" direction="Direction_equal" onClick={getAction} />
+             
               <ActionButton colorB='gray' label="[ CA ]" direction="Direction_clear" onClick={getAction} />
             </HStack>
           </VStack>
