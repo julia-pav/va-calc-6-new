@@ -1,26 +1,19 @@
 import React, { useState } from 'react'
-import {
-	Flex,
-	Text,
-	IconButton,
-	Divider,
-	Avatar,
-	Heading
-} from '@chakra-ui/react'
-import {
-	FiMenu,
-	FiHome,
-	FiCalendar,
-	FiUser,
-	FiDollarSign,
-	FiBriefcase,
-	FiSettings
-} from 'react-icons/fi'
+import { Flex, Link, Text, IconButton, Heading } from '@chakra-ui/react'
+import { FiMenu, FiHome, FiBriefcase, FiSettings } from 'react-icons/fi'
 import { IoPawOutline } from 'react-icons/io5'
 import NavItem from '../components/NavItem'
 
 export default function Sidebar() {
 	const [navSize, changeNavSize] = useState('large')
+	// const [isCalcBase10Open, setCalcBase10Open] = useState(false)
+	// const [isCalculatorSubMenu2Open, setCalculatorSubMenu2Open] =
+	// 	useState(false)
+
+	// const toggleCalcBase10 = () => {
+	// 	setCalcBase10Open(!isCalcBase10Open)
+	// }
+
 	return (
 		<Flex
 			pos='sticky'
@@ -53,37 +46,22 @@ export default function Sidebar() {
 				<NavItem
 					navSize={navSize}
 					icon={FiHome}
-					title='Dashboard'
+					title='Info'
 					description='This is the description for the dashboard.'
+					active
 				/>
-				<NavItem navSize={navSize} icon={FiCalendar} title='Calendar' active />
-				<NavItem navSize={navSize} icon={FiUser} title='Clients' />
-				<NavItem navSize={navSize} icon={FiDollarSign} title='Stocks' />
-				<NavItem navSize={navSize} icon={FiBriefcase} title='Reports' />
-				<NavItem navSize={navSize} icon={FiSettings} title='Settings' />
-			</Flex>
-
-			<Flex
-				p='5%'
-				flexDir='column'
-				w='100%'
-				alignItems={navSize == 'small' ? 'center' : 'flex-start'}
-				mb={4}
-			>
-				<Divider display={navSize == 'small' ? 'none' : 'flex'} />
-				<Flex mt={4} align='center'>
-					<Avatar size='sm' src='avatar-1.jpg' />
-					<Flex
-						flexDir='column'
-						ml={4}
-						display={navSize == 'small' ? 'none' : 'flex'}
-					>
-						<Heading as='h3' size='sm'>
-							Sylwia Weller
-						</Heading>
-						<Text color='gray'>Admin</Text>
-					</Flex>
-				</Flex>
+				{/* <Link href='/calculator10'> */}
+				<NavItem
+					navSize={navSize}
+					icon={FiBriefcase}
+					title='Decimal calculator'
+				/>
+				{/* </Link> */}
+				<NavItem
+					navSize={navSize}
+					icon={FiSettings}
+					title='Binary calculator'
+				/>
 			</Flex>
 		</Flex>
 	)
