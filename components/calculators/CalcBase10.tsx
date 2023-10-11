@@ -62,8 +62,8 @@ function CalcBase10() {
           setResult('')
           break;
         case "Action_show_result":
-            var temp = +operandOne + +operandTwo;
-            setResult(temp);
+            var temp: number = +operandOne + +operandTwo;
+            setResult(temp.toString());
             break;
         case "Action_operand_1_attach_zero":
           setOperandOne(operandOne + '0')
