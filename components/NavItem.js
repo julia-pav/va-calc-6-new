@@ -12,7 +12,7 @@ import NavHoverBox from '../components/NavHoverBox'
 
 export default function NavItem({
 	icon,
-	Link,
+	LinkUrl,
 	title,
 	description,
 	active,
