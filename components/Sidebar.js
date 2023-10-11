@@ -44,6 +44,7 @@ export default function Sidebar() {
 					}}
 				/>
 				<NavItem
+					LinkUrl='/'
 					navSize={navSize}
 					icon={FiHome}
 					title='Info'
@@ -52,12 +53,14 @@ export default function Sidebar() {
 				/>
 				{/* <Link href='/calculator10'> */}
 				<NavItem
+					LinkUrl='/calculator10'
 					navSize={navSize}
 					icon={FiBriefcase}
 					title='Decimal calculator'
 				/>
 				{/* </Link> */}
 				<NavItem
+					LinkUrl='/calculator10'
 					navSize={navSize}
 					icon={FiSettings}
 					title='Binary calculator'

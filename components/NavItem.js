@@ -27,6 +27,7 @@ export default function NavItem({
 		>
 			<Menu placement='right'>
 				<Link
+					href={LinkUrl}
 					backgroundColor={active && '#AEC8CA'}
 					p={3}
 					borderRadius={8}
