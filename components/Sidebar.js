@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Flex, Link, Text, IconButton, Heading } from '@chakra-ui/react'
 import { FiMenu, FiHome, FiBriefcase, FiSettings } from 'react-icons/fi'
 import { IoPawOutline } from 'react-icons/io5'
-import NavItem from '../components/NavItem'
+import NavItem from './NavItem'
 
 export default function Sidebar() {
 	const [navSize, changeNavSize] = useState('large')
