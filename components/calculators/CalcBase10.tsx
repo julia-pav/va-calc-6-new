@@ -86,7 +86,51 @@ const calcMachine = Machine<CalcContext, CalcEvent>(
                 ...context,
                 operandOne: context.operandOne + "0",
               };
-            // Add other cases for operand_1_attach_one, operand_1_attach_two, etc.
+            case "Action_operand_1_attach_one":
+              return {
+                ...context,
+                operandOne: context.operandOne + "1",
+              };
+            case "Action_operand_1_attach_two":
+              return {
+                ...context,
+                operandOne: context.operandOne + "2",
+              };
+            case "Action_operand_1_attach_three":
+              return {
+                ...context,
+                operandOne: context.operandOne + "3",
+              };
+            case "Action_operand_1_attach_four":
+              return {
+                ...context,
+                operandOne: context.operandOne + "4",
+              };
+            case "Action_operand_1_attach_five":
+              return {
+                ...context,
+                operandOne: context.operandOne + "5",
+              };
+            case "Action_operand_1_attach_six":
+              return {
+                ...context,
+                operandOne: context.operandOne + "6",
+              };
+            case "Action_operand_1_attach_seven":
+              return {
+                ...context,
+                operandOne: context.operandOne + "7",
+              };
+            case "Action_operand_1_attach_eight":
+              return {
+                ...context,
+                operandOne: context.operandOne + "8",
+              };
+            case "Action_operand_1_attach_nine":
+              return {
+                ...context,
+                operandOne: context.operandOne + "9",
+              };
             case "Action_waiting_for_operand_2_for_plus":
               // do nothing
               break;
@@ -95,7 +139,51 @@ const calcMachine = Machine<CalcContext, CalcEvent>(
                 ...context,
                 operandTwo: context.operandTwo + "0",
               };
-            // Add other cases for operand_2_attach_one, operand_2_attach_two, etc.
+            case "Action_operand_2_attach_one":
+              return {
+                ...context,
+                operandTwo: context.operandTwo + "1",
+              };
+            case "Action_operand_2_attach_two":
+              return {
+                ...context,
+                operandTwo: context.operandTwo + "2",
+              };
+            case "Action_operand_2_attach_three":
+              return {
+                ...context,
+                operandTwo: context.operandTwo + "3",
+              };
+            case "Action_operand_2_attach_four":
+              return {
+                ...context,
+                operandTwo: context.operandTwo + "4",
+              };
+            case "Action_operand_2_attach_five":
+              return {
+                ...context,
+                operandTwo: context.operandTwo + "5",
+              };
+            case "Action_operand_2_attach_six":
+              return {
+                ...context,
+                operandTwo: context.operandTwo + "6",
+              };
+            case "Action_operand_2_attach_seven":
+              return {
+                ...context,
+                operandTwo: context.operandTwo + "7",
+              };
+            case "Action_operand_2_attach_eight":
+              return {
+                ...context,
+                operandTwo: context.operandTwo + "8",
+              };
+            case "Action_operand_2_attach_nine":
+              return {
+                ...context,
+                operandTwo: context.operandTwo + "9",
+              };
             case "Action_warning_10__Second_operand_is_missing":
               return {
                 ...context,
