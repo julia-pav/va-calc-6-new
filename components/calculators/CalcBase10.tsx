@@ -1,5 +1,15 @@
 import { useMachine } from "@xstate/react";
 import { Machine, assign } from "xstate";
+import vaScript from "../../public/vaop/va-scripts/vaScriptBase10_v1.json";
+import {
+  Flex,
+  Text,
+  IconButton,
+  Button,
+  VStack,
+  HStack,
+} from "@chakra-ui/react";
+import { useState } from "react";
 
 type Direction = "Direction_init" | "Direction_zero";
 // ... (other directions)
