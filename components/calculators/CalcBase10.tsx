@@ -1,14 +1,7 @@
 import { useMachine } from "@xstate/react";
 import { Machine, assign } from "xstate";
 import vaScript from "../../public/vaop/va-scripts/vaScriptBase10_v1.json";
-import {
-  Flex,
-  Text,
-  IconButton,
-  Button,
-  VStack,
-  HStack,
-} from "@chakra-ui/react";
+import { Text, Button, VStack, HStack } from "@chakra-ui/react";
 import { useState } from "react";
 
 type Direction =
@@ -26,38 +19,6 @@ type Direction =
   | "Direction_plus"
   | "Direction_equal"
   | "Direction_clear";
-
-type VaScriptAction = {
-  [direction in Direction]: string;
-};
-
-type ButtonProps = {
-  onClick: () => void;
-};
-
-function ActionButton({
-  variantB = "solid",
-  colorB,
-  label,
-  direction,
-  onClick,
-}: {
-  variantB?: string;
-  colorB: string;
-  label: string;
-  direction: Direction;
-  onClick: (direction: Direction) => void;
-}) {
-  return (
-    <Button
-      variant={variantB}
-      colorScheme={colorB}
-      onClick={() => onClick(direction)}
-    >
-      {label}
-    </Button>
-  );
-}
 
 type CalcContext = {
   currentAction: string;
@@ -100,14 +61,64 @@ const calcMachine = Machine<CalcContext, CalcEvent>(
     actions: {
       getAction: assign((context, event) => {
         const direction = event.direction;
-        // ... (your existing logic here)
         const nextAction = vaScript[context.currentAction][direction];
-        // ... (continue with your logic)
+
+        if (vaScript.hasOwnProperty(nextAction)) {
+          switch (nextAction) {
+            case "Action_init":
+              // do nothing
+              break;
+            case "Action_clear":
+              return {
+                ...context,
+                operandOne: "",
+                operandTwo: "",
+                result: "",
+              };
+            case "Action_show_result":
+              const temp = +context.operandOne + +context.operandTwo;
+              return {
+                ...context,
+                result: temp.toString(),
+              };
+            case "Action_operand_1_attach_zero":
+              return {
+                ...context,
+                operandOne: context.operandOne + "0",
+              };
+            // Add other cases for operand_1_attach_one, operand_1_attach_two, etc.
+            case "Action_waiting_for_operand_2_for_plus":
+              // do nothing
+              break;
+            case "Action_operand_2_attach_zero":
+              return {
+                ...context,
+                operandTwo: context.operandTwo + "0",
+              };
+            // Add other cases for operand_2_attach_one, operand_2_attach_two, etc.
+            case "Action_warning_10__Second_operand_is_missing":
+              return {
+                ...context,
+                warningMsg: "Second operand is missing",
+              };
+            default:
+              console.log(
+                "Error: Unknown action in default:[" + nextAction + "]"
+              );
+          }
+        } else {
+          switch (nextAction) {
+            default:
+              console.log("Error: [" + nextAction + "]");
+          }
+          console.log("Stop --> [" + nextAction + "]");
+        }
+
         return {
           ...context,
-          currentAction: nextAction,
           directionAction: direction,
           previousAction: context.currentAction,
+          currentAction: nextAction,
         };
       }),
     },
@@ -129,14 +140,90 @@ function CalcBase10() {
 
   return (
     <div>
-      {/* (your JSX code here) */}
-      <ActionButton
-        colorB="blue"
-        label="[ 1 ]"
-        direction="Direction_one"
-        onClick={() => send({ type: "CLICK", direction: "Direction_one" })}
-      />
-      {/* (other buttons with similar changes) */}
+      <Text fontSize="50px" color="gray">
+        va-calculator (base 10)
+      </Text>
+      <Text fontSize="25px" color="gray">
+        [{operandOne}] + [{operandTwo}] = [{result}]
+      </Text>
+      <Text fontSize="25px" color="black">
+        &nbsp;
+      </Text>
+      <Text as="i" fontSize="25px" color="red">
+        {warningMsg}
+      </Text>
+      <Text fontSize="25px" color="red">
+        &nbsp;
+      </Text>
+      <VStack spacing={3} align="start">
+        <HStack spacing={4}>
+          <Button
+            colorScheme="blue"
+            onClick={() => send({ type: "CLICK", direction: "Direction_one" })}
+          >
+            [ 1 ]
+          </Button>
+          {/* Add similar buttons for [2], [3], etc. */}
+        </HStack>
+
+        <HStack spacing={4}>
+          <Button
+            colorScheme="blue"
+            onClick={() => send({ type: "CLICK", direction: "Direction_four" })}
+          >
+            [ 4 ]
+          </Button>
+          {/* Add similar buttons for [5], [6], etc. */}
+        </HStack>
+
+        <HStack spacing={4}>
+          <Button
+            colorScheme="blue"
+            onClick={() =>
+              send({ type: "CLICK", direction: "Direction_seven" })
+            }
+          >
+            [ 7 ]
+          </Button>
+          {/* Add similar buttons for [8], [9], etc. */}
+        </HStack>
+
+        <HStack spacing={4}>
+          <Button
+            variant="outline"
+            colorScheme="teal"
+            onClick={() => send({ type: "CLICK", direction: "Direction_zero" })}
+          >
+            [ 0 ]
+          </Button>
+          <Button
+            colorScheme="gray"
+            onClick={() => send({ type: "CLICK", direction: "Direction_plus" })}
+          >
+            [ + ]
+          </Button>
+          <Button
+            colorScheme="gray"
+            onClick={() =>
+              send({ type: "CLICK", direction: "Direction_equal" })
+            }
+          >
+            [ = ]
+          </Button>
+        </HStack>
+
+        <HStack spacing={4}>
+          <Button
+            colorScheme="gray"
+            onClick={() =>
+              send({ type: "CLICK", direction: "Direction_clear" })
+            }
+          >
+            [ CA ]
+          </Button>
+        </HStack>
+      </VStack>
+
       <p>
         <img src="v-agent_32x32.png" alt="v-agent" width="32" height="32" />{" "}
         &nbsp; Powered by VAOP
