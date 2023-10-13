@@ -163,7 +163,20 @@ function CalcBase10() {
           >
             [ 1 ]
           </Button>
-          {/* Add similar buttons for [2], [3], etc. */}
+          <Button
+            colorScheme="blue"
+            onClick={() => send({ type: "CLICK", direction: "Direction_two" })}
+          >
+            [ 2 ]
+          </Button>
+          <Button
+            colorScheme="blue"
+            onClick={() =>
+              send({ type: "CLICK", direction: "Direction_three" })
+            }
+          >
+            [ 3 ]
+          </Button>
         </HStack>
 
         <HStack spacing={4}>
@@ -173,7 +186,18 @@ function CalcBase10() {
           >
             [ 4 ]
           </Button>
-          {/* Add similar buttons for [5], [6], etc. */}
+          <Button
+            colorScheme="blue"
+            onClick={() => send({ type: "CLICK", direction: "Direction_five" })}
+          >
+            [ 5 ]
+          </Button>
+          <Button
+            colorScheme="blue"
+            onClick={() => send({ type: "CLICK", direction: "Direction_six" })}
+          >
+            [ 6 ]
+          </Button>
         </HStack>
 
         <HStack spacing={4}>
@@ -185,7 +209,20 @@ function CalcBase10() {
           >
             [ 7 ]
           </Button>
-          {/* Add similar buttons for [8], [9], etc. */}
+          <Button
+            colorScheme="blue"
+            onClick={() =>
+              send({ type: "CLICK", direction: "Direction_eight" })
+            }
+          >
+            [ 8 ]
+          </Button>
+          <Button
+            colorScheme="blue"
+            onClick={() => send({ type: "CLICK", direction: "Direction_nine" })}
+          >
+            [ 9 ]
+          </Button>
         </HStack>
 
         <HStack spacing={4}>
