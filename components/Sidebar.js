@@ -49,7 +49,6 @@ export default function Sidebar() {
 					icon={FiHome}
 					title='Info'
 					description='This is the description for the dashboard.'
-					active
 				/>
 				{/* <Link href='/calculator10'> */}
 				<NavItem
@@ -60,7 +59,7 @@ export default function Sidebar() {
 				/>
 				{/* </Link> */}
 				<NavItem
-					LinkUrl='/calculator10'
+					LinkUrl='/calculator2'
 					navSize={navSize}
 					icon={FiSettings}
 					title='Binary calculator'

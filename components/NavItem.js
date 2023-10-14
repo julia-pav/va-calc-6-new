@@ -1,4 +1,5 @@
 import React from 'react'
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 import {
 	Flex,
@@ -17,9 +18,11 @@ export default function NavItem({
 	LinkUrl,
 	title,
 	description,
-	active,
 	navSize
 }) {
+	const router = useRouter();  // get current route
+	// Determine if the current page matches the LinkUrl
+    const isActive = router.pathname === LinkUrl;
 
 	const [isHovered, setIsHovered] = useState(false);
 
@@ -33,7 +36,7 @@ export default function NavItem({
 			<Menu placement='right'>
 				<Link
 					href={LinkUrl}
-					backgroundColor={active && '#AEC8CA'}
+					backgroundColor={isActive && '#AEC8CA'}
 					p={3}
 					borderRadius={8}
 					_hover={{ textDecor: 'none', backgroundColor: '#AEC8CA' }}
@@ -46,7 +49,7 @@ export default function NavItem({
 							<Icon
 								as={icon}
 								fontSize='xl'
-								color={active ? '#82AAAD' : 'gray.500'}
+								color={isActive ? '#82AAAD' : 'gray.500'}
 							/>
 							<Text ml={5} display={navSize == 'small' ? 'none' : 'flex'}>
 								{title}
