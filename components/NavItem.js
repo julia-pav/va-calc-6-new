@@ -1,10 +1,12 @@
 import React from 'react'
+import { useState } from 'react';
 import {
 	Flex,
 	Text,
 	Icon,
 	Link,
 	Menu,
+	Box,
 	MenuButton,
 	MenuList
 } from '@chakra-ui/react'
@@ -18,6 +20,9 @@ export default function NavItem({
 	active,
 	navSize
 }) {
+
+	const [isHovered, setIsHovered] = useState(false);
+
 	return (
 		<Flex
 			mt={30}
@@ -33,6 +38,8 @@ export default function NavItem({
 					borderRadius={8}
 					_hover={{ textDecor: 'none', backgroundColor: '#AEC8CA' }}
 					w={navSize == 'large' && '100%'}
+					onMouseEnter={() => setIsHovered(true)}
+        			onMouseLeave={() => setIsHovered(false)}
 				>
 					<MenuButton w='100%'>
 						<Flex>
@@ -46,10 +53,13 @@ export default function NavItem({
 							</Text>
 						</Flex>
 					</MenuButton>
+				
+				{isHovered && (
+					<Box py={0} border='none' w={200} h={200} ml={5}>
+						<NavHoverBox title={title} icon={icon} description={description} />
+					</Box>
+				)}
 				</Link>
-				<MenuList py={0} border='none' w={200} h={200} ml={5}>
-					<NavHoverBox title={title} icon={icon} description={description} />
-				</MenuList>
 			</Menu>
 		</Flex>
 	)
