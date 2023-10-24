@@ -31,26 +31,33 @@ type Direction =
 
 function CalcBase10() {
 
-    const [currentAction, setCurrentAction] = useState<string>('Action_init');
-    const [previousAction, setPreviousAction] = useState<string>('Action_init');
-    const [directionAction, setDirectionAction] = useState<Direction>('Direction_init');
-    const [operandOne, setOperandOne] = useState<string>('');
-    const [operandTwo, setOperandTwo] = useState<string>('');
-    const [result, setResult] = useState<string>('');
-    const [warningMsg, setWarningMsg] = useState<string>('');
+  const [currentAction, setCurrentAction] = useState<string>('Action_init');
+  const [previousAction, setPreviousAction] = useState<string>('Action_init');
+  const [directionAction, setDirectionAction] = useState<Direction>('Direction_init');
+  const [operandOne, setOperandOne] = useState<string>('');
+  const [operandTwo, setOperandTwo] = useState<string>('');
+  const [result, setResult] = useState<string>('');
+  const [warningMsg, setWarningMsg] = useState<string>('rrrrr');
+  const [actionsText, setActionsText] = useState<string>('actionsText_init');
 
 
-    function getAction(direction: Direction) {
+  function getAction(direction: Direction) {
     console.log('Click!!!'); 
     console.log(direction); 
 
     setWarningMsg('');
 
     const nextAction = vaScript[currentAction][direction];
+
+    setActionsText(getActionsBlockFromScriptByAction(nextAction));
+
+    //setActionsText(nextAction);
   
     if(vaScript.hasOwnProperty(nextAction)){
   
       console.log('currentAction in case:[' + nextAction +']');
+
+      
 
       switch(nextAction) {
         case "Action_init":
@@ -129,7 +136,7 @@ function CalcBase10() {
             setOperandTwo(operandTwo + '9')
           break;
         case "Action_warning_10__Second_operand_is_missing":
-          setWarningMsg('Second operand is missing')
+          setWarningMsg('____Second operand is missing')
           break;
         default:
           console.log('Error: Unknown action in default:[' + nextAction + ']')
@@ -162,8 +169,8 @@ function CalcBase10() {
         <Text fontSize='25px' color='black'>
           &nbsp; 
         </Text>   
-        <Text as='i' fontSize='25px' color='red'>
-          {warningMsg} 
+        <Text as='i' fontSize='12px' color='red'>
+          {actionsText}
         </Text>
         <Text fontSize='25px' color='red'>
           &nbsp; 
@@ -217,6 +224,20 @@ function ActionButton({ variantB='solid', colorB, label, direction, onClick }: {
       {label}
     </Button>
   );
+}
+
+function getActionsBlockFromScriptByAction(action:String){
+  let directionMappings = vaScript[action];
+  let resultString = '';
+
+  for (const key in directionMappings) {
+    if (directionMappings.hasOwnProperty(key)) {
+      const value = directionMappings[key];
+      resultString += `${key},${value}\n\n\n`;
+    }
+  }
+
+  return resultString
 }
 
 
