@@ -1,6 +1,6 @@
 import React from 'react'
-import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useRouter } from 'next/router'
+import { useState } from 'react'
 import {
 	Flex,
 	Text,
@@ -20,11 +20,11 @@ export default function NavItem({
 	description,
 	navSize
 }) {
-	const router = useRouter();  // get current route
+	const router = useRouter() // get current route
 	// Determine if the current page matches the LinkUrl
-    const isActive = router.pathname === LinkUrl;
+	const isActive = router.pathname === LinkUrl
 
-	const [isHovered, setIsHovered] = useState(false);
+	const [isHovered, setIsHovered] = useState(false)
 
 	return (
 		<Flex
@@ -42,7 +42,7 @@ export default function NavItem({
 					_hover={{ textDecor: 'none', backgroundColor: '#AEC8CA' }}
 					w={navSize == 'large' && '100%'}
 					onMouseEnter={() => setIsHovered(true)}
-        			onMouseLeave={() => setIsHovered(false)}
+					onMouseLeave={() => setIsHovered(false)}
 				>
 					<MenuButton w='100%'>
 						<Flex>
@@ -56,12 +56,16 @@ export default function NavItem({
 							</Text>
 						</Flex>
 					</MenuButton>
-				
-				{isHovered && (
-					<Box py={0} border='none' w={200} h={200} ml={5}>
-						<NavHoverBox title={title} icon={icon} description={description} />
-					</Box>
-				)}
+
+					{isHovered && (
+						<Box py={0} border='none' w={100} h={100} ml={5}>
+							<NavHoverBox
+								title={title}
+								icon={icon}
+								description={description}
+							/>
+						</Box>
+					)}
 				</Link>
 			</Menu>
 		</Flex>

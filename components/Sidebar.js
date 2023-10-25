@@ -6,13 +6,6 @@ import NavItem from './NavItem'
 
 export default function Sidebar() {
 	const [navSize, changeNavSize] = useState('large')
-	// const [isCalcBase10Open, setCalcBase10Open] = useState(false)
-	// const [isCalculatorSubMenu2Open, setCalculatorSubMenu2Open] =
-	// 	useState(false)
-
-	// const toggleCalcBase10 = () => {
-	// 	setCalcBase10Open(!isCalcBase10Open)
-	// }
 
 	return (
 		<Flex
