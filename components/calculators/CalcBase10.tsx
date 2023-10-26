@@ -2,29 +2,20 @@ import vaScript from '../../public/vaop/va-scripts/vaScriptBase10_v1.json';
 import { Flex, Text, IconButton, Button, VStack, HStack } from '@chakra-ui/react'
 import { useState } from 'react';
 
+import { VaScriptAction } from '../../types/types';
 import { Direction } from '../../types/types';
-
-
-  type VaScriptAction = {
-    [direction in Direction]: string;
-  };
-
-
-  type ButtonProps = {
-    onClick: () => void;
-  };
 
  
 
 function CalcBase10() {
 
-  const [currentAction, setCurrentAction] = useState<string>('Action_init');
-  const [previousAction, setPreviousAction] = useState<string>('Action_init');
+  const [currentAction, setCurrentAction] = useState<VaScriptAction>('Action_init');
+  const [previousAction, setPreviousAction] = useState<VaScriptAction>('Action_init');
   const [directionAction, setDirectionAction] = useState<Direction>('Direction_init');
   const [operandOne, setOperandOne] = useState<string>('');
   const [operandTwo, setOperandTwo] = useState<string>('');
   const [result, setResult] = useState<string>('');
-  const [warningMsg, setWarningMsg] = useState<string>('rrrrr');
+  const [warningMsg, setWarningMsg] = useState<string>('');
   const [actionsText, setActionsText] = useState<string>('actionsText_init');
 
 
@@ -34,11 +25,11 @@ function CalcBase10() {
 
     setWarningMsg('');
 
-    const nextAction = vaScript[currentAction][direction];
+    const nextAction = vaScript[currentAction][direction] as VaScriptAction;
 
-    setActionsText(getActionsBlockFromScriptByAction(nextAction));
+    var temp = getActionsBlockFromScriptByAction(nextAction);
 
-    //setActionsText(nextAction);
+    setActionsText(temp);
   
     if(vaScript.hasOwnProperty(nextAction)){
   
@@ -213,13 +204,13 @@ function ActionButton({ variantB='solid', colorB, label, direction, onClick }: {
   );
 }
 
-function getActionsBlockFromScriptByAction(action:String){
-  let directionMappings = vaScript[action];
-  let resultString = '';
+function getActionsBlockFromScriptByAction(action:VaScriptAction): string {
+  let directionMappings: any = vaScript[action];
+  let resultString:string = '';
 
   for (const key in directionMappings) {
     if (directionMappings.hasOwnProperty(key)) {
-      const value = directionMappings[key];
+      const value:VaScriptAction = directionMappings[key];
       resultString += `${key},${value}\n\n\n`;
     }
   }

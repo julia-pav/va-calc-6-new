@@ -1,4 +1,8 @@
-export type Direction =
+export type VaScriptAction =
+  | "Action_init"
+  | "Action_operand_1_attach_zero";
+
+  export type Direction =
   | "Direction_init"
   | "Direction_zero"
   | "Direction_one"
@@ -13,3 +17,4 @@ export type Direction =
   | "Direction_plus"
   | "Direction_equal"
   | "Direction_clear";
+  
