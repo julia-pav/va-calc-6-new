@@ -2,21 +2,8 @@ import vaScript from '../../public/vaop/va-scripts/vaScriptBase10_v1.json';
 import { Flex, Text, IconButton, Button, VStack, HStack } from '@chakra-ui/react'
 import { useState } from 'react';
 
-type Direction =
-  | "Direction_init"
-  | "Direction_zero"
-  | "Direction_one"
-  | "Direction_two"
-  | "Direction_three"
-  | "Direction_four"
-  | "Direction_five"
-  | "Direction_six"
-  | "Direction_seven"
-  | "Direction_eight"
-  | "Direction_nine"
-  | "Direction_plus"
-  | "Direction_equal"
-  | "Direction_clear";
+import { Direction } from '../../types/types';
+
 
   type VaScriptAction = {
     [direction in Direction]: string;
@@ -239,6 +226,16 @@ function getActionsBlockFromScriptByAction(action:String){
 
   return resultString
 }
+
+// const getActionsBlockFromScriptByAction = (action: string): string => {
+//   const directionMappings = vaScript[action];
+
+//   return Object.keys(directionMappings)
+//     .filter(key => directionMappings.hasOwnProperty(key))
+//     .map(key => `${key},${directionMappings[key]}\n\n\n`)
+//     .join('');
+// };
+
 
 
 export default CalcBase10;
