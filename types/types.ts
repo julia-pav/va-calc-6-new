@@ -17,4 +17,12 @@ export type VaScriptAction =
   | "Direction_plus"
   | "Direction_equal"
   | "Direction_clear";
+
+  export type ActionMapping = {
+    [key in Direction]: VaScriptAction;
+  };
+  
+  export type ActionMap = {
+    [key in VaScriptAction]: ActionMapping;
+  };
   
