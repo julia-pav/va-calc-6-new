@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 import { VaScriptAction } from '../../types/types';
 import { Direction } from '../../types/types';
+import { ActionMap } from '../../types/types';
 
  
 
@@ -47,8 +48,9 @@ function CalcBase10() {
           setResult('')
           break;
         case "Action_show_result":
-            var temp = +operandOne + +operandTwo;
-            setResult(temp);
+          var tempNumber: number = +operandOne + +operandTwo;
+          var tempString: string = tempNumber.toString();
+          setResult(tempString);
             break;
         case "Action_operand_1_attach_zero":
           setOperandOne(operandOne + '0')
