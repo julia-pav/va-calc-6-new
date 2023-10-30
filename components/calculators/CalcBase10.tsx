@@ -137,71 +137,152 @@ function CalcBase10() {
 
   }
   return (
-    <div>
-        <Text fontSize='50px' color='gray'>
-            va-calculator (base 10)
-        </Text>
-        <Text fontSize='25px' color='gray'>
-          [{operandOne}] + [{operandTwo}] = [{result}] 
-        </Text>
-        <Text fontSize='25px' color='black'>
-          &nbsp; 
-        </Text>   
-        <Text as='i' fontSize='12px' color='red'>
-          {actionsText}
-        </Text>
-        <Text fontSize='25px' color='red'>
-          &nbsp; 
-        </Text>      
-          <VStack spacing={3} align="start">
-            <HStack spacing={4}>
-              <ActionButton colorB='blue' label="[ 1 ]" direction="Direction_one" onClick={getAction} />
-              <ActionButton colorB='blue' label="[ 2 ]" direction="Direction_two" onClick={getAction} />
-              <ActionButton colorB='blue' label="[ 3 ]" direction="Direction_three" onClick={getAction} />
-            </HStack>
+		<div>
+			<Text fontSize='50px' color='gray'>
+				va-calculator (base 10)
+			</Text>
+			<Text fontSize='25px' color='gray'>
+				[{operandOne}] + [{operandTwo}] = [{result}]
+			</Text>
+			<Text fontSize='25px' color='black'>
+				&nbsp;
+			</Text>
+			<Text as='i' fontSize='25px' color='red'>
+				{warningMsg}
+			</Text>
+			<Text fontSize='25px' color='red'>
+				&nbsp;
+			</Text>
+			<VStack spacing={3} align='start'>
+				<HStack spacing={4}>
+					<ActionButton
+						colorB='blue'
+						label='[ 1 ]'
+						direction='Direction_one'
+						onClick={getAction}
+					/>
+					<ActionButton
+						colorB='blue'
+						label='[ 2 ]'
+						direction='Direction_two'
+						onClick={getAction}
+					/>
+					<ActionButton
+						colorB='blue'
+						label='[ 3 ]'
+						direction='Direction_three'
+						onClick={getAction}
+					/>
+				</HStack>
 
-            <HStack spacing={4}>
-              <ActionButton colorB='blue' label="[ 4 ]" direction="Direction_four" onClick={getAction} />
-              <ActionButton colorB='blue' label="[ 5 ]" direction="Direction_five" onClick={getAction} />
-              <ActionButton colorB='blue' label="[ 6 ]" direction="Direction_six" onClick={getAction} />
-            </HStack>
+				<HStack spacing={4}>
+					<ActionButton
+						colorB='blue'
+						label='[ 4 ]'
+						direction='Direction_four'
+						onClick={getAction}
+					/>
+					<ActionButton
+						colorB='blue'
+						label='[ 5 ]'
+						direction='Direction_five'
+						onClick={getAction}
+					/>
+					<ActionButton
+						colorB='blue'
+						label='[ 6 ]'
+						direction='Direction_six'
+						onClick={getAction}
+					/>
+				</HStack>
 
-            <HStack spacing={4}>
-              <ActionButton colorB='blue' label="[ 7 ]" direction="Direction_seven" onClick={getAction} />
-              <ActionButton colorB='blue' label="[ 8 ]" direction="Direction_eight" onClick={getAction} />
-              <ActionButton colorB='blue' label="[ 9 ]" direction="Direction_nine" onClick={getAction} />
-            </HStack>
+				<HStack spacing={4}>
+					<ActionButton
+						colorB='blue'
+						label='[ 7 ]'
+						direction='Direction_seven'
+						onClick={getAction}
+					/>
+					<ActionButton
+						colorB='blue'
+						label='[ 8 ]'
+						direction='Direction_eight'
+						onClick={getAction}
+					/>
+					<ActionButton
+						colorB='blue'
+						label='[ 9 ]'
+						direction='Direction_nine'
+						onClick={getAction}
+					/>
+				</HStack>
 
+				<HStack spacing={4}>
+					<ActionButton
+						variantB='outline'
+						colorB='teal'
+						label='[ 0 ]'
+						direction='Direction_zero'
+						onClick={getAction}
+					/>
+					<ActionButton
+						colorB='gray'
+						label='[ + ]'
+						direction='Direction_plus'
+						onClick={getAction}
+					/>
+					<ActionButton
+						colorB='gray'
+						label='[ = ]'
+						direction='Direction_equal'
+						onClick={getAction}
+					/>
+				</HStack>
 
-            <HStack spacing={4}>
-              <ActionButton variantB='outline' colorB='teal' label="[ 0 ]" direction="Direction_zero" onClick={getAction} />
-              <ActionButton colorB='gray' label="[ + ]" direction="Direction_plus" onClick={getAction} />
-              <ActionButton colorB='gray' label="[ = ]" direction="Direction_equal" onClick={getAction} />
-            </HStack>
+				<HStack spacing={4}>
+					<ActionButton
+						colorB='gray'
+						label='[ CA ]'
+						direction='Direction_clear'
+						onClick={getAction}
+					/>
+				</HStack>
+			</VStack>
 
-            <HStack spacing={4}>
-             
-              <ActionButton colorB='gray' label="[ CA ]" direction="Direction_clear" onClick={getAction} />
-            </HStack>
-          </VStack>
-   
-        <p>
+			{/* <p>
         <img src="v-agent_32x32.png" alt="v-agent" width="32" height="32" /> &nbsp;  Powered by VAOP  
-        </p>
-        <p>
-         <small>previousAction:</small>[{previousAction}] ==&gt; <small>directionAction:</small>[{directionAction}] ==&gt; <small>currentAction:</small>[{currentAction}]
-        </p>
-     
-    </div>
-  );
+        </p> */}
+			<p>
+				<small>previousAction:</small>[{previousAction}] ==&gt;{' '}
+				<small>directionAction:</small>[{directionAction}] ==&gt;{' '}
+				<small>currentAction:</small>[{currentAction}]
+			</p>
+		</div>
+	)
 }
 
-function ActionButton({ variantB='solid', colorB, label, direction, onClick }: { variantB?: string, colorB: string; label: string; direction: Direction; onClick: (direction: Direction) => void }) {
-  return (
-    <Button variant={variantB} colorScheme={colorB} onClick={() => onClick(direction)}>
-      {label}
-    </Button>
-  );
+function ActionButton({
+	variantB = 'solid',
+	colorB,
+	label,
+	direction,
+	onClick
+}: {
+	variantB?: string
+	colorB: string
+	label: string
+	direction: Direction
+	onClick: (direction: Direction) => void
+}) {
+	return (
+		<Button
+			variant={variantB}
+			colorScheme={colorB}
+			onClick={() => onClick(direction)}
+		>
+			{label}
+		</Button>
+	)
 }
 
 function getActionsBlockFromScriptByAction(action:VaScriptAction): string {
