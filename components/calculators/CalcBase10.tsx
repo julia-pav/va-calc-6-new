@@ -18,6 +18,7 @@ function CalcBase10() {
   const [result, setResult] = useState<string>('');
   const [warningMsg, setWarningMsg] = useState<string>('');
   const [actionsText, setActionsText] = useState<string>('actionsText_init');
+  const [actionLines, setActionsLines] = useState<any>([]);
 
 
   function getAction(direction: Direction) {
@@ -29,7 +30,8 @@ function CalcBase10() {
     const nextAction = vaScript[currentAction][direction] as VaScriptAction;
 
     var temp = getActionsBlockFromScriptByAction(nextAction);
-
+	const actionLines = temp.split('\n');
+	setActionsLines(actionLines);
     setActionsText(temp);
   
     if(vaScript.hasOwnProperty(nextAction)){
@@ -153,7 +155,7 @@ function CalcBase10() {
 				{warningMsg}
 			</Text>
 			<Text as='i' fontSize='12px' color='blue'>
-				{actionsText}
+			<ActionList actionData={actionLines} />
 			</Text>
 			<Text fontSize='25px' color='red'>
 				&nbsp;
@@ -297,7 +299,7 @@ function getActionsBlockFromScriptByAction(action:VaScriptAction): string {
   for (const key in directionMappings) {
     if (directionMappings.hasOwnProperty(key)) {
       const value:VaScriptAction = directionMappings[key];
-      resultString += `${key},${value}\n\n\n`;
+      resultString += `${key}, ===============       ${value}\n`;
     }
   }
 
@@ -312,6 +314,16 @@ function getActionsBlockFromScriptByAction(action:VaScriptAction): string {
 //     .map(key => `${key},${directionMappings[key]}\n\n\n`)
 //     .join('');
 // };
+
+function ActionList({ actionData }) {
+	return (
+	  <div>
+		{actionData.map((line, index) => (
+		  <div key={index}>{line}</div>
+		))}
+	  </div>
+	);
+  }
 
 
 
