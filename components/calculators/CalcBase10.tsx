@@ -116,7 +116,7 @@ function CalcBase10() {
             setOperandTwo(operandTwo + '9')
           break;
         case "Action_warning_10__Second_operand_is_missing":
-          setWarningMsg('____Second operand is missing')
+          setWarningMsg('Second operand is missing')
           break;
         default:
           console.log('Error: Unknown action in default:[' + nextAction + ']')
@@ -151,6 +151,9 @@ function CalcBase10() {
 			</Text>
 			<Text as='i' fontSize='25px' color='red'>
 				{warningMsg}
+			</Text>
+			<Text as='i' fontSize='12px' color='blue'>
+				{actionsText}
 			</Text>
 			<Text fontSize='25px' color='red'>
 				&nbsp;
