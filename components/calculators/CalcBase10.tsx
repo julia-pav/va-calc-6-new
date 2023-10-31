@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { VaScriptAction } from '../../types/types';
 import { Direction } from '../../types/types';
 import { ActionMap } from '../../types/types';
+import { ActionMapping } from '../../types/types';
 
  
 
@@ -155,7 +156,7 @@ function CalcBase10() {
 				{warningMsg}
 			</Text>
 			<Text as='i' fontSize='12px' color='blue'>
-			<ActionList actionData={actionLines} />
+				<ActionList actionData={actionLines} />
 			</Text>
 			<Text fontSize='25px' color='red'>
 				&nbsp;
@@ -293,7 +294,7 @@ function ActionButton({
 }
 
 function getActionsBlockFromScriptByAction(action:VaScriptAction): string {
-  let directionMappings: any = vaScript[action];
+  let directionMappings = vaScript[action] as ActionMapping;
   let resultString:string = '';
 
   for (const key in directionMappings) {
