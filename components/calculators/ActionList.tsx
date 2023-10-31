@@ -7,11 +7,16 @@ interface ActionListProps {
 function ActionList({ actionData }: ActionListProps) {
   return (
     <div className="border p-2 rounded bg-grey">
-      {actionData.map((line, index) => (
-        <div className="whitespace-nowrap" key={index}>
-          {line}
-        </div>
-      ))}
+      {actionData.map((line, index) => {
+        if (line) {
+          return (
+            <div className="whitespace-nowrap" key={index}>
+              [{line}]
+            </div>
+          );
+        }
+        return null;
+      })}
     </div>
   );
 }

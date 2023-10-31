@@ -28,7 +28,7 @@ function CalcBase10() {
   const [result, setResult] = useState<string>("");
   const [warningMsg, setWarningMsg] = useState<string>("");
   const [actionsText, setActionsText] = useState<string>("actionsText_init");
-  const [actionLines, setActionsLines] = useState<any>([]);
+  const [actionLines, setActionsLines] = useState<string[]>([]);
 
   function getAction(direction: Direction) {
     console.log("Click!!!");
