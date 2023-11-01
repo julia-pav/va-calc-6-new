@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "@chakra-ui/react";
+import { Button , ButtonProps } from "@chakra-ui/react";
 import { Direction } from "../../types/types";
 
 interface ActionButtonProps {

@@ -149,7 +149,7 @@ function CalcBase10() {
     setPreviousAction(currentAction);
     setCurrentAction(nextAction);
   }
-  return (<div>
+  return (
     <VStack p={2}>
       <Text fontSize="50px" color="gray">
         va-calculator (base 10)
@@ -175,25 +175,25 @@ function CalcBase10() {
                 colorB="blue"
                 label="[ 1 ]"
                 direction="Direction_one"
-                onClick={getAction}
-				onMouseOver={handleMouseOver} 
-				onMouseLeave={handleMouseLeave}
+                onClick={(direction: Direction) => getAction(direction)}
+  				onMouseOver={(direction: Direction) => handleMouseOver(direction)}
+  				onMouseLeave={() => handleMouseLeave()}
               />
               <ActionButton
                 colorB="blue"
                 label="[ 2 ]"
                 direction="Direction_two"
-                onClick={getAction}
-				onMouseOver={handleMouseOver} 
-				onMouseLeave={handleMouseLeave}
+                onClick={(direction: Direction) => getAction(direction)}
+  				onMouseOver={(direction: Direction) => handleMouseOver(direction)}
+  				onMouseLeave={() => handleMouseLeave()}
               />
               <ActionButton
                 colorB="blue"
                 label="[ 3 ]"
                 direction="Direction_three"
-                onClick={getAction}
-				onMouseOver={handleMouseOver} 
-				onMouseLeave={handleMouseLeave}
+                onClick={(direction: Direction) => getAction(direction)}
+  				onMouseOver={(direction: Direction) => handleMouseOver(direction)}
+  				onMouseLeave={() => handleMouseLeave()}
               />
             </HStack>
 
@@ -202,25 +202,25 @@ function CalcBase10() {
                 colorB="blue"
                 label="[ 4 ]"
                 direction="Direction_four"
-                onClick={getAction}
-				onMouseOver={handleMouseOver} 
-				onMouseLeave={handleMouseLeave}
+                onClick={(direction: Direction) => getAction(direction)}
+  				onMouseOver={(direction: Direction) => handleMouseOver(direction)}
+  				onMouseLeave={() => handleMouseLeave()}
               />
               <ActionButton
                 colorB="blue"
                 label="[ 5 ]"
                 direction="Direction_five"
-                onClick={getAction}
-				onMouseOver={handleMouseOver} 
-				onMouseLeave={handleMouseLeave}
+                onClick={(direction: Direction) => getAction(direction)}
+  				onMouseOver={(direction: Direction) => handleMouseOver(direction)}
+  				onMouseLeave={() => handleMouseLeave()}
               />
               <ActionButton
                 colorB="blue"
                 label="[ 6 ]"
                 direction="Direction_six"
-                onClick={getAction}
-				onMouseOver={handleMouseOver} 
-				onMouseLeave={handleMouseLeave}
+                onClick={(direction: Direction) => getAction(direction)}
+  				onMouseOver={(direction: Direction) => handleMouseOver(direction)}
+  				onMouseLeave={() => handleMouseLeave()}
               />
             </HStack>
 
@@ -229,25 +229,25 @@ function CalcBase10() {
                 colorB="blue"
                 label="[ 7 ]"
                 direction="Direction_seven"
-                onClick={getAction}
-				onMouseOver={handleMouseOver} 
-				onMouseLeave={handleMouseLeave}
+                onClick={(direction: Direction) => getAction(direction)}
+  				onMouseOver={(direction: Direction) => handleMouseOver(direction)}
+  				onMouseLeave={() => handleMouseLeave()}
               />
               <ActionButton
                 colorB="blue"
                 label="[ 8 ]"
                 direction="Direction_eight"
-                onClick={getAction}
-				onMouseOver={handleMouseOver} 
-				onMouseLeave={handleMouseLeave}
+                onClick={(direction: Direction) => getAction(direction)}
+  				onMouseOver={(direction: Direction) => handleMouseOver(direction)}
+  				onMouseLeave={() => handleMouseLeave()}
               />
               <ActionButton
                 colorB="blue"
                 label="[ 9 ]"
                 direction="Direction_nine"
-                onClick={getAction}
-				onMouseOver={handleMouseOver} 
-				onMouseLeave={handleMouseLeave}
+                onClick={(direction: Direction) => getAction(direction)}
+  				onMouseOver={(direction: Direction) => handleMouseOver(direction)}
+  				onMouseLeave={() => handleMouseLeave()}
               />
             </HStack>
 
@@ -257,25 +257,25 @@ function CalcBase10() {
                 colorB="teal"
                 label="[ 0 ]"
                 direction="Direction_zero"
-                onClick={getAction}
-				onMouseOver={handleMouseOver} 
-				onMouseLeave={handleMouseLeave}
+                onClick={(direction: Direction) => getAction(direction)}
+  				onMouseOver={(direction: Direction) => handleMouseOver(direction)}
+  				onMouseLeave={() => handleMouseLeave()}
               />
               <ActionButton
                 colorB="gray"
                 label="[ + ]"
                 direction="Direction_plus"
-                onClick={getAction}
-				onMouseOver={handleMouseOver} 
-				onMouseLeave={handleMouseLeave}
+                onClick={(direction: Direction) => getAction(direction)}
+  				onMouseOver={(direction: Direction) => handleMouseOver(direction)}
+  				onMouseLeave={() => handleMouseLeave()}
               />
               <ActionButton
                 colorB="gray"
                 label="[ = ]"
                 direction="Direction_equal"
-                onClick={getAction}
-				onMouseOver={handleMouseOver} 
-				onMouseLeave={handleMouseLeave}
+                onClick={(direction: Direction) => getAction(direction)}
+  				onMouseOver={(direction: Direction) => handleMouseOver(direction)}
+  				onMouseLeave={() => handleMouseLeave()}
               />
             </HStack>
 
@@ -284,9 +284,9 @@ function CalcBase10() {
                 colorB="gray"
                 label="[ CA ]"
                 direction="Direction_clear"
-                onClick={getAction}
-				onMouseOver={handleMouseOver} 
-				onMouseLeave={handleMouseLeave}
+                onClick={(direction: Direction) => getAction(direction)}
+  				onMouseOver={(direction: Direction) => handleMouseOver(direction)}
+  				onMouseLeave={() => handleMouseLeave()}
               />
             </HStack>
           </VStack>
@@ -307,7 +307,6 @@ function CalcBase10() {
         </div>
       </Stack>
     </VStack>
-	</div>
   );
 }
 
