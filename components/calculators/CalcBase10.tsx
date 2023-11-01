@@ -17,18 +17,24 @@ import { ActionMapping } from "../../types/types";
 import ActionList from "./ActionList";
 
 function CalcBase10() {
-  const [currentAction, setCurrentAction] =
-    useState<VaScriptAction>("Action_init");
-  const [previousAction, setPreviousAction] =
-    useState<VaScriptAction>("Action_init");
-  const [directionAction, setDirectionAction] =
-    useState<Direction>("Direction_init");
-  const [operandOne, setOperandOne] = useState<string>("");
-  const [operandTwo, setOperandTwo] = useState<string>("");
-  const [result, setResult] = useState<string>("");
-  const [warningMsg, setWarningMsg] = useState<string>("");
-  const [actionsText, setActionsText] = useState<string>("actionsText_init");
-  const [actionLines, setActionsLines] = useState<string[]>([]);
+	const [currentAction, setCurrentAction] = useState<VaScriptAction>("Action_init");
+	const [previousAction, setPreviousAction] = useState<VaScriptAction>("Action_init");
+	const [directionAction, setDirectionAction] = useState<Direction>("Direction_init");
+	const [nextDirectionAction, setNextDirectionAction] = useState<Direction>("nextDirection_init");
+	const [operandOne, setOperandOne] = useState<string>("");
+	const [operandTwo, setOperandTwo] = useState<string>("");
+	const [result, setResult] = useState<string>("");
+	const [warningMsg, setWarningMsg] = useState<string>("");
+	const [actionsText, setActionsText] = useState<string>("actionsText_init");
+	const [actionLines, setActionsLines] = useState<string[]>([]);
+
+	// function handleMouseOver(inputData: Direction): void {
+	// 	setNextDirectionAction(inputData);
+	// }	
+
+	const handleMouseOver = (inputData: Direction): void => {
+		setNextDirectionAction(inputData);
+	  };
 
   function getAction(direction: Direction) {
     console.log("Click!!!");
@@ -142,7 +148,7 @@ function CalcBase10() {
     setPreviousAction(currentAction);
     setCurrentAction(nextAction);
   }
-  return (
+  return (<div>
     <VStack p={2}>
       <Text fontSize="50px" color="gray">
         va-calculator (base 10)
@@ -169,18 +175,21 @@ function CalcBase10() {
                 label="[ 1 ]"
                 direction="Direction_one"
                 onClick={getAction}
+				onMouseOver={() => handleMouseOver('Direction_one')} 
               />
               <ActionButton
                 colorB="blue"
                 label="[ 2 ]"
                 direction="Direction_two"
                 onClick={getAction}
+				onMouseOver={() => handleMouseOver('Direction_two')} 
               />
               <ActionButton
                 colorB="blue"
                 label="[ 3 ]"
                 direction="Direction_three"
                 onClick={getAction}
+				onMouseOver={() => handleMouseOver('Direction_three')}
               />
             </HStack>
 
@@ -190,18 +199,21 @@ function CalcBase10() {
                 label="[ 4 ]"
                 direction="Direction_four"
                 onClick={getAction}
+				onMouseOver={() => handleMouseOver('Direction_four')}
               />
               <ActionButton
                 colorB="blue"
                 label="[ 5 ]"
                 direction="Direction_five"
                 onClick={getAction}
+				onMouseOver={() => handleMouseOver('Direction_five')}
               />
               <ActionButton
                 colorB="blue"
                 label="[ 6 ]"
                 direction="Direction_six"
                 onClick={getAction}
+				onMouseOver={() => handleMouseOver('Direction_six')}
               />
             </HStack>
 
@@ -211,18 +223,21 @@ function CalcBase10() {
                 label="[ 7 ]"
                 direction="Direction_seven"
                 onClick={getAction}
+				onMouseOver={() => handleMouseOver('Direction_seven')}
               />
               <ActionButton
                 colorB="blue"
                 label="[ 8 ]"
                 direction="Direction_eight"
                 onClick={getAction}
+				onMouseOver={() => handleMouseOver('Direction_eight')}
               />
               <ActionButton
                 colorB="blue"
                 label="[ 9 ]"
                 direction="Direction_nine"
                 onClick={getAction}
+				onMouseOver={() => handleMouseOver('Direction_nine')}
               />
             </HStack>
 
@@ -233,18 +248,21 @@ function CalcBase10() {
                 label="[ 0 ]"
                 direction="Direction_zero"
                 onClick={getAction}
+				onMouseOver={() => handleMouseOver('Direction_zero')}
               />
               <ActionButton
                 colorB="gray"
                 label="[ + ]"
                 direction="Direction_plus"
                 onClick={getAction}
+				onMouseOver={() => handleMouseOver('Direction_plus')}
               />
               <ActionButton
                 colorB="gray"
                 label="[ = ]"
                 direction="Direction_equal"
                 onClick={getAction}
+				onMouseOver={() => handleMouseOver('Direction_equal')}
               />
             </HStack>
 
@@ -254,6 +272,7 @@ function CalcBase10() {
                 label="[ CA ]"
                 direction="Direction_clear"
                 onClick={getAction}
+				onMouseOver={() => handleMouseOver('Direction_clear')}
               />
             </HStack>
           </VStack>
@@ -269,11 +288,12 @@ function CalcBase10() {
         </div>
         <div className="">
           <Text as="i" fontSize="12px" color="blue">
-            <ActionList actionData={actionLines} />
+            <ActionList actionData={actionLines} nextDirectionAction={nextDirectionAction} />
           </Text>
         </div>
       </Stack>
     </VStack>
+	</div>
   );
 }
 
@@ -283,18 +303,21 @@ function ActionButton({
   label,
   direction,
   onClick,
+  onMouseOver,
 }: {
   variantB?: string;
   colorB: string;
   label: string;
   direction: Direction;
   onClick: (direction: Direction) => void;
+  onMouseOver: (direction: Direction) => void;
 }) {
   return (
     <Button
       variant={variantB}
       colorScheme={colorB}
       onClick={() => onClick(direction)}
+	  onMouseOver={() => onMouseOver(direction)} 
     >
       {label}
     </Button>
@@ -323,5 +346,7 @@ function getActionsBlockFromScriptByAction(action: VaScriptAction): string {
 //     .map(key => `${key},${directionMappings[key]}\n\n\n`)
 //     .join('');
 // };
+
+
 
 export default CalcBase10;
