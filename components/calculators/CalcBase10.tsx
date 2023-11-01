@@ -28,10 +28,6 @@ function CalcBase10() {
 	const [actionsText, setActionsText] = useState<string>("actionsText_init");
 	const [actionLines, setActionsLines] = useState<string[]>([]);
 
-	// function handleMouseOver(inputData: Direction): void {
-	// 	setNextDirectionAction(inputData);
-	// }	
-
 	const handleMouseOver = (inputData: Direction): void => {
 		setNextDirectionAction(inputData);
 	  };
