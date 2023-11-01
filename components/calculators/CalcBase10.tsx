@@ -15,6 +15,7 @@ import { Direction } from "../../types/types";
 import { ActionMap } from "../../types/types";
 import { ActionMapping } from "../../types/types";
 import ActionList from "./ActionList";
+import ActionButton from "./ActionButton";
 
 function CalcBase10() {
 	const [currentAction, setCurrentAction] = useState<VaScriptAction>("Action_init");
@@ -310,36 +311,6 @@ function CalcBase10() {
   );
 }
 
-function ActionButton({
-  variantB = "solid",
-  colorB,
-  label,
-  direction,
-  onClick,
-  onMouseOver,
-  onMouseLeave,
-}: {
-  variantB?: string;
-  colorB: string;
-  label: string;
-  direction: Direction;
-  onClick: (direction: Direction) => void;
-  onMouseOver: (direction: Direction) => void;
-  onMouseLeave: () => void;
-}) {
-  return (
-    <Button
-      variant={variantB}
-      colorScheme={colorB}
-      onClick={() => onClick(direction)}
-	  onMouseOver={() => onMouseOver(direction)} 
-	  onMouseLeave={() => onMouseLeave()} 
-	 >
-      {label}
-    </Button>
-
-  );
-}
 
 function getActionsBlockFromScriptByAction(action: VaScriptAction): string {
   let directionMappings = vaScript[action] as ActionMapping;
