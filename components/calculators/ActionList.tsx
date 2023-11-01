@@ -11,11 +11,21 @@ function ActionList({ actionData, nextDirectionAction }: ActionListProps) {
     <div className="border p-2 rounded bg-grey">
       {actionData.map((line, index) => {
         if (line) {
-          return (
-            <div className="whitespace-nowrap" key={index}>
-              [{line}] - [{nextDirectionAction}]
-            </div>
-          );
+          if (line.includes(nextDirectionAction)) {
+            return (
+              <div className="whitespace-nowrap" key={index}>
+                <strong>
+                  [{line}]
+                </strong>
+              </div>
+            );
+          } else {
+            return (
+              <div className="whitespace-nowrap" key={index}>
+                [{line}]
+              </div>
+            );
+          }
         }
         return null;
       })}

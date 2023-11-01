@@ -348,7 +348,7 @@ function getActionsBlockFromScriptByAction(action: VaScriptAction): string {
   for (const key in directionMappings) {
     if (directionMappings.hasOwnProperty(key)) {
       const value: VaScriptAction = directionMappings[key];
-      resultString += `${key}, ===============       ${value}\n`;
+      resultString += `${key} --- ${value}\n`;
     }
   }
 
