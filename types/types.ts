@@ -27,6 +27,7 @@ export type VaScriptAction =
 
   export type Direction =
   | "Direction_init"
+  | "nextDirection_init"
   | "Direction_zero"
   | "Direction_one"
   | "Direction_two"
