@@ -59,7 +59,7 @@ function CalcBase10() {
     Action_show_result
   };
 
-  //const { Action_show_result } = require('./Actions/Action_show_result');
+  const { getActionsBlockFromScriptByAction } = require('./calcUtils');
 
 	const handleMouseOver = (inputData: Direction): void => {
 		setNextDirectionAction(inputData);
@@ -342,19 +342,19 @@ function CalcBase10() {
 }
 
 
-function getActionsBlockFromScriptByAction(action: VaScriptAction): string {
-  let directionMappings = vaScript[action] as ActionMapping;
-  let resultString: string = "";
+// function getActionsBlockFromScriptByAction(action: VaScriptAction): string {
+//   let directionMappings = vaScript[action] as ActionMapping;
+//   let resultString: string = "";
 
-  for (const key in directionMappings) {
-    if (directionMappings.hasOwnProperty(key)) {
-      const value: VaScriptAction = directionMappings[key];
-      resultString += `${key} --- ${value}\n`;
-    }
-  }
+//   for (const key in directionMappings) {
+//     if (directionMappings.hasOwnProperty(key)) {
+//       const value: VaScriptAction = directionMappings[key];
+//       resultString += `${key} --- ${value}\n`;
+//     }
+//   }
 
-  return resultString;
-}
+//   return resultString;
+// }
 
 // const getActionsBlockFromScriptByAction = (action: string): string => {
 //   const directionMappings = vaScript[action];
