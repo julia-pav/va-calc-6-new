@@ -15,7 +15,7 @@ function ActionList({ actionData, nextDirectionAction }: ActionListProps) {
             return (
               <div className="whitespace-nowrap" key={index}>
                 <strong>
-                <img src="images/v-agent-32x32.png" width={32} height={32} /> [{line}]
+                <img src="images/v-agent-red-32x32.png" width={32} height={32} /> [{line}]
                 </strong>
               </div>
             );
