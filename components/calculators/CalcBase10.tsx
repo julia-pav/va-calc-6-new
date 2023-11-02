@@ -207,8 +207,8 @@ function CalcBase10() {
                 label="[ 1 ]"
                 direction="Direction_one"
                 onClick={(direction: Direction) => getAction(direction)}
-  				onMouseOver={(direction: Direction) => handleMouseOver(direction)}
-  				onMouseLeave={() => handleMouseLeave()}
+  				      onMouseOver={(direction: Direction) => handleMouseOver(direction)}
+  				      onMouseLeave={() => handleMouseLeave()}
               />
               <ActionButton
                 colorB="blue"
@@ -340,31 +340,6 @@ function CalcBase10() {
     </VStack>
   );
 }
-
-
-// function getActionsBlockFromScriptByAction(action: VaScriptAction): string {
-//   let directionMappings = vaScript[action] as ActionMapping;
-//   let resultString: string = "";
-
-//   for (const key in directionMappings) {
-//     if (directionMappings.hasOwnProperty(key)) {
-//       const value: VaScriptAction = directionMappings[key];
-//       resultString += `${key} --- ${value}\n`;
-//     }
-//   }
-
-//   return resultString;
-// }
-
-// const getActionsBlockFromScriptByAction = (action: string): string => {
-//   const directionMappings = vaScript[action];
-
-//   return Object.keys(directionMappings)
-//     .filter(key => directionMappings.hasOwnProperty(key))
-//     .map(key => `${key},${directionMappings[key]}\n\n\n`)
-//     .join('');
-// };
-
 
 
 export default CalcBase10;
