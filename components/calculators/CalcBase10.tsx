@@ -17,6 +17,8 @@ import { ActionMapping } from "../../types/types";
 import ActionList from "./ActionList";
 import ActionButton from "./ActionButton";
 import Action_show_result from "./Actions/Action_show_result";
+import Action_clear from "./Actions/Action_clear";
+import Action_init from "./Actions/Action_init";
 
 
 function CalcBase10() {
@@ -32,7 +34,7 @@ function CalcBase10() {
 	const [actionLines, setActionsLines] = useState<string[]>([]);
 
   const actionFunctions: Record<VaScriptAction, Function> = {
-    // Action_init,
+    Action_init,
     // Action_operand_1_attach_zero,
     // Action_operand_1_attach_one,
     // Action_operand_1_attach_two,
@@ -55,7 +57,7 @@ function CalcBase10() {
     // Action_operand_2_attach_eight,
     // Action_operand_2_attach_nine,
     // Action_warning_10__Second_operand_is_missing,
-    // Action_clear,
+    Action_clear,
     Action_show_result
   };
 
@@ -87,15 +89,13 @@ function CalcBase10() {
 
       switch (nextAction) {
         case "Action_init":
-          // do nothing
+          actionFunctions[nextAction](operandOne, operandTwo, setOperandOne, setOperandTwo, setResult);
           break;
         case "Action_clear":
-          setOperandOne("");
-          setOperandTwo("");
-          setResult("");
+          actionFunctions[nextAction](operandOne, operandTwo, setOperandOne, setOperandTwo, setResult);
           break;
         case "Action_show_result":
-          actionFunctions[nextAction](operandOne, operandTwo, setResult);
+          actionFunctions[nextAction](operandOne, operandTwo, setOperandOne, setOperandTwo, setResult);
           break;
         case "Action_operand_1_attach_zero":
           setOperandOne(operandOne + "0");

@@ -1,13 +1,13 @@
-function Action_show_result(
+function Action_clear(
   operandOne: string, 
   operandTwo: string, 
   setOperandOne: React.Dispatch<React.SetStateAction<string>>,
   setOperandTwo: React.Dispatch<React.SetStateAction<string>>,
   setResult: React.Dispatch<React.SetStateAction<string>>
   ): void {
-    const tempNumber: number = +operandOne + +operandTwo;
-    const tempString: string = tempNumber.toString();
-    setResult(tempString)
+    setOperandOne("");
+    setOperandTwo("");
+    setResult("");
   }
   
-  export default Action_show_result;
+  export default Action_clear;
