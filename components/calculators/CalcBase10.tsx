@@ -16,6 +16,8 @@ import { ActionMap } from "../../types/types";
 import { ActionMapping } from "../../types/types";
 import ActionList from "./ActionList";
 import ActionButton from "./ActionButton";
+import Action_show_result from "./Actions/Action_show_result";
+
 
 function CalcBase10() {
 	const [currentAction, setCurrentAction] = useState<VaScriptAction>("Action_init");
@@ -29,7 +31,35 @@ function CalcBase10() {
 	const [actionsText, setActionsText] = useState<string>("actionsText_init");
 	const [actionLines, setActionsLines] = useState<string[]>([]);
 
-  const { Action_show_result } = require('./Actions/Action_show_result');
+  const actionFunctions: Record<VaScriptAction, Function> = {
+    // Action_init,
+    // Action_operand_1_attach_zero,
+    // Action_operand_1_attach_one,
+    // Action_operand_1_attach_two,
+    // Action_operand_1_attach_three,
+    // Action_operand_1_attach_four,
+    // Action_operand_1_attach_five,
+    // Action_operand_1_attach_six,
+    // Action_operand_1_attach_seven,
+    // Action_operand_1_attach_eight,
+    // Action_operand_1_attach_nine,
+    // Action_waiting_for_operand_2_for_plus,
+    // Action_operand_2_attach_zero,
+    // Action_operand_2_attach_one,
+    // Action_operand_2_attach_two,
+    // Action_operand_2_attach_three,
+    // Action_operand_2_attach_four,
+    // Action_operand_2_attach_five,
+    // Action_operand_2_attach_six,
+    // Action_operand_2_attach_seven,
+    // Action_operand_2_attach_eight,
+    // Action_operand_2_attach_nine,
+    // Action_warning_10__Second_operand_is_missing,
+    // Action_clear,
+    Action_show_result
+  };
+
+  //const { Action_show_result } = require('./Actions/Action_show_result');
 
 	const handleMouseOver = (inputData: Direction): void => {
 		setNextDirectionAction(inputData);
@@ -65,11 +95,7 @@ function CalcBase10() {
           setResult("");
           break;
         case "Action_show_result":
-          //var tempNumber: number = +operandOne + +operandTwo;
-          //var tempString: string = tempNumber.toString();
-          // var tempString: string = Action_show_result(operandOne, operandTwo);
-          var tempString: string = Action_show_result(operandOne, operandTwo, setResult);
-          //setResult(tempString);
+          actionFunctions[nextAction](operandOne, operandTwo, setResult);
           break;
         case "Action_operand_1_attach_zero":
           setOperandOne(operandOne + "0");

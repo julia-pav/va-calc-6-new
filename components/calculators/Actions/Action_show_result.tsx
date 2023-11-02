@@ -8,4 +8,4 @@ function Action_show_result(
     setResult(tempString)
   }
   
-  module.exports = { Action_show_result };
+  export default Action_show_result;
