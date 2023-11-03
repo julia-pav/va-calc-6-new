@@ -185,6 +185,16 @@ function CalcBase10() {
       <Text fontSize="50px" color="gray">
         va-calculator (base 10)
       </Text>
+      <div className="">
+          <Text as="i" fontSize="12px" color="blue">
+          <strong>
+            {currentAction}
+          </strong>
+          </Text>
+          <Text as="i" fontSize="12px" color="grey">
+          &nbsp;is completed
+          </Text>
+        </div>
       <Stack direction={{ base: "column", md: "row" }} spacing={4}>
         <div>
           <Text fontSize="25px" color="gray">
@@ -193,7 +203,7 @@ function CalcBase10() {
           <Text fontSize="25px" color="black">
             &nbsp;
           </Text>
-          <Text as="i" fontSize="25px" color="red">
+          <Text as="i" fontSize="16px" color="red">
             {warningMsg}
           </Text>
 
