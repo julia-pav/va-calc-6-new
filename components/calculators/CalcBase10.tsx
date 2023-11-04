@@ -1,15 +1,6 @@
 import vaScript from "../../public/vaop/va-scripts/vaScriptBase10_v1.json";
-import {
-  Flex,
-  Text,
-  IconButton,
-  Button,
-  VStack,
-  HStack,
-  Stack,
-} from "@chakra-ui/react";
+import {Text,VStack,HStack,Stack,} from "@chakra-ui/react";
 import { useState } from "react";
-
 import { VaScriptAction } from "../../types/types";
 import { Direction } from "../../types/types";
 import { ActionMap } from "../../types/types";
@@ -48,8 +39,6 @@ import FileContentPopup from "./FileContentPopup";
 
 function CalcBase10() {
 
- 
-
   const [showPopup, setShowPopup] = useState(false);
   const [fileContent, setFileContent] = useState(""); // Store the file content here
 
@@ -64,9 +53,6 @@ function CalcBase10() {
   const closePopup = () => {
     setShowPopup(false);
   };
-
-
-
 
   const [currentAction, setCurrentAction] = useState<VaScriptAction>("Action_init");
 	const [previousAction, setPreviousAction] = useState<VaScriptAction>("Action_init");
@@ -172,7 +158,7 @@ function CalcBase10() {
   return (
     // @ts-ignore
     <VStack p={2}>
-      <Text fontSize="50px" color="gray">
+      <Text fontSize="35px" color="gray">
         va-calculator (base 10) 
       </Text>
       <div className="">
