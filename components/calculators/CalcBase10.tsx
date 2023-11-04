@@ -177,17 +177,14 @@ function CalcBase10() {
       </Text>
       <div className="">
           <Text as="i" fontSize="12px" color="blue">
-          <strong>
-            {currentAction}
-          </strong>
-          </Text>
-          <Text as="i" fontSize="12px" color="grey">
-          &nbsp;is completed<div>
-      <button onClick={openPopup}>Open Popup</button>
-      {showPopup && (
-        <FileContentPopup content={fileContent} onClose={closePopup} />
-      )}
-    </div>
+                <div>
+                  <button onClick={openPopup}> 
+                    <strong>{currentAction}</strong>&nbsp;&nbsp;is completed
+                  </button>
+                    {showPopup && (
+                      <FileContentPopup content={fileContent} onClose={closePopup} />
+                    )}
+                </div>
           </Text>
         </div>
       <Stack direction={{ base: "column", md: "row" }} spacing={4}>
