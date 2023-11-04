@@ -17,12 +17,54 @@ import { ActionMapping } from "../../types/types";
 import ActionList from "./ActionList";
 import ActionButton from "./ActionButton";
 import Action_show_result from "./Actions/Action_show_result";
-import Action_clear from "./Actions/Action_clear";
+import Action_clear from "../../public/Actions/Action_clear";
 import Action_init from "./Actions/Action_init";
+
+import FileContentPopup from "./FileContentPopup";
 
 
 function CalcBase10() {
-	const [currentAction, setCurrentAction] = useState<VaScriptAction>("Action_init");
+
+  const [showPopup, setShowPopup] = useState(false);
+  const [fileContent, setFileContent] = useState(""); // Store the file content here
+
+
+  // Specify the path to the text file in the public folder
+  const filePath = './Actions/Action_clear.tsx'; // Replace with the actual path to your text file
+
+  fetch(filePath)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Failed to fetch file content');
+      }
+      return response.text();
+    })
+    .then((text) => {
+      setFileContent(text);
+    })
+    .catch((error) => {
+      console.error('Error fetching file content:', error);
+    });
+
+
+
+ 
+
+  // Function to open the popup
+  const openPopup = () => {
+    
+    setShowPopup(true);
+  };
+
+  // Function to close the popup
+  const closePopup = () => {
+    setShowPopup(false);
+  };
+
+
+
+
+  const [currentAction, setCurrentAction] = useState<VaScriptAction>("Action_init");
 	const [previousAction, setPreviousAction] = useState<VaScriptAction>("Action_init");
 	const [directionAction, setDirectionAction] = useState<Direction>("Direction_init");
 	const [nextDirectionAction, setNextDirectionAction] = useState<Direction>("nextDirection_init");
@@ -183,7 +225,7 @@ function CalcBase10() {
     // @ts-ignore
     <VStack p={2}>
       <Text fontSize="50px" color="gray">
-        va-calculator (base 10)
+        va-calculator (base 10) 
       </Text>
       <div className="">
           <Text as="i" fontSize="12px" color="blue">
@@ -192,7 +234,12 @@ function CalcBase10() {
           </strong>
           </Text>
           <Text as="i" fontSize="12px" color="grey">
-          &nbsp;is completed
+          &nbsp;is completed<div>
+      <button onClick={openPopup}>Open Popup</button>
+      {showPopup && (
+        <FileContentPopup content={fileContent} onClose={closePopup} />
+      )}
+    </div>
           </Text>
         </div>
       <Stack direction={{ base: "column", md: "row" }} spacing={4}>
