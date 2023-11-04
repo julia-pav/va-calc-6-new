@@ -1,4 +1,4 @@
-function Action_operand_1_attach_zero(
+function Action_operand_1_attach_seven(
     operandOne: string, 
     operandTwo: string, 
     setOperandOne: React.Dispatch<React.SetStateAction<string>>,
@@ -6,7 +6,7 @@ function Action_operand_1_attach_zero(
     setResult: React.Dispatch<React.SetStateAction<string>>,
     setWarningMsg: React.Dispatch<React.SetStateAction<string>>
     ): void {
-        setOperandOne(operandOne + "0");
+        setOperandOne(operandOne + "7");
     }
     
-    export default Action_operand_1_attach_zero;
+    export default Action_operand_1_attach_seven;

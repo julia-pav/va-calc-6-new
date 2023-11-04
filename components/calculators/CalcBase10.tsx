@@ -22,8 +22,25 @@ import Action_init from "../../public/Actions/Action_init";
 import Action_operand_1_attach_zero from "../../public/Actions/Action_operand_1_attach_zero";
 import Action_operand_1_attach_one from "../../public/Actions/Action_operand_1_attach_one";
 import Action_operand_1_attach_two from "../../public/Actions/Action_operand_1_attach_two";
-
-
+import Action_operand_1_attach_three from "../../public/Actions/Action_operand_1_attach_three";
+import Action_operand_1_attach_four from "../../public/Actions/Action_operand_1_attach_four";
+import Action_operand_1_attach_five from "../../public/Actions/Action_operand_1_attach_five";
+import Action_operand_1_attach_six from "../../public/Actions/Action_operand_1_attach_six";
+import Action_operand_1_attach_seven from "../../public/Actions/Action_operand_1_attach_seven";
+import Action_operand_1_attach_eight from "../../public/Actions/Action_operand_1_attach_eight";
+import Action_operand_1_attach_nine from "../../public/Actions/Action_operand_1_attach_nine";
+import Action_waiting_for_operand_2_for_plus from "../../public/Actions/Action_waiting_for_operand_2_for_plus";
+import Action_operand_2_attach_zero from "../../public/Actions/Action_operand_2_attach_zero";
+import Action_operand_2_attach_one from "../../public/Actions/Action_operand_2_attach_one";
+import Action_operand_2_attach_two from "../../public/Actions/Action_operand_2_attach_two";
+import Action_operand_2_attach_three from "../../public/Actions/Action_operand_2_attach_three";
+import Action_operand_2_attach_four from "../../public/Actions/Action_operand_2_attach_four";
+import Action_operand_2_attach_five from "../../public/Actions/Action_operand_2_attach_five";
+import Action_operand_2_attach_six from "../../public/Actions/Action_operand_2_attach_six";
+import Action_operand_2_attach_seven from "../../public/Actions/Action_operand_2_attach_seven";
+import Action_operand_2_attach_eight from "../../public/Actions/Action_operand_2_attach_eight";
+import Action_operand_2_attach_nine from "../../public/Actions/Action_operand_2_attach_nine";
+import Action_warning_10__Second_operand_is_missing from "../../public/Actions/Action_warning_10__Second_operand_is_missing";
 
 
 import FileContentPopup from "./FileContentPopup";
@@ -67,25 +84,25 @@ function CalcBase10() {
     Action_operand_1_attach_zero,
     Action_operand_1_attach_one,
     Action_operand_1_attach_two,
-    // Action_operand_1_attach_three,
-    // Action_operand_1_attach_four,
-    // Action_operand_1_attach_five,
-    // Action_operand_1_attach_six,
-    // Action_operand_1_attach_seven,
-    // Action_operand_1_attach_eight,
-    // Action_operand_1_attach_nine,
-    // Action_waiting_for_operand_2_for_plus,
-    // Action_operand_2_attach_zero,
-    // Action_operand_2_attach_one,
-    // Action_operand_2_attach_two,
-    // Action_operand_2_attach_three,
-    // Action_operand_2_attach_four,
-    // Action_operand_2_attach_five,
-    // Action_operand_2_attach_six,
-    // Action_operand_2_attach_seven,
-    // Action_operand_2_attach_eight,
-    // Action_operand_2_attach_nine,
-    // Action_warning_10__Second_operand_is_missing,
+    Action_operand_1_attach_three,
+    Action_operand_1_attach_four,
+    Action_operand_1_attach_five,
+    Action_operand_1_attach_six,
+    Action_operand_1_attach_seven,
+    Action_operand_1_attach_eight,
+    Action_operand_1_attach_nine,
+    Action_waiting_for_operand_2_for_plus,
+    Action_operand_2_attach_zero,
+    Action_operand_2_attach_one,
+    Action_operand_2_attach_two,
+    Action_operand_2_attach_three,
+    Action_operand_2_attach_four,
+    Action_operand_2_attach_five,
+    Action_operand_2_attach_six,
+    Action_operand_2_attach_seven,
+    Action_operand_2_attach_eight,
+    Action_operand_2_attach_nine,
+    Action_warning_10__Second_operand_is_missing,
     Action_clear,
     Action_show_result
   };
@@ -118,82 +135,101 @@ function CalcBase10() {
 
       switch (nextAction) {
         case "Action_init":
-          actionFunctions[nextAction](operandOne, operandTwo, setOperandOne, setOperandTwo, setResult);
+          actionFunctions[nextAction](operandOne, operandTwo, setOperandOne, setOperandTwo, setResult, setWarningMsg);
           break;
         case "Action_clear":
-          actionFunctions[nextAction](operandOne, operandTwo, setOperandOne, setOperandTwo, setResult);
+          actionFunctions[nextAction](operandOne, operandTwo, setOperandOne, setOperandTwo, setResult, setWarningMsg);
           break;
         case "Action_show_result":
-          actionFunctions[nextAction](operandOne, operandTwo, setOperandOne, setOperandTwo, setResult);
+          actionFunctions[nextAction](operandOne, operandTwo, setOperandOne, setOperandTwo, setResult, setWarningMsg);
           break;
         case "Action_operand_1_attach_zero":
-          actionFunctions[nextAction](operandOne, operandTwo, setOperandOne, setOperandTwo, setResult);
+          actionFunctions[nextAction](operandOne, operandTwo, setOperandOne, setOperandTwo, setResult, setWarningMsg);
           //setOperandOne(operandOne + "0");
           break;
         case "Action_operand_1_attach_one":
-          actionFunctions[nextAction](operandOne, operandTwo, setOperandOne, setOperandTwo, setResult);
+          actionFunctions[nextAction](operandOne, operandTwo, setOperandOne, setOperandTwo, setResult, setWarningMsg);
           //setOperandOne(operandOne + "1");
           break;
         case "Action_operand_1_attach_two":
-          actionFunctions[nextAction](operandOne, operandTwo, setOperandOne, setOperandTwo, setResult);
+          actionFunctions[nextAction](operandOne, operandTwo, setOperandOne, setOperandTwo, setResult, setWarningMsg);
           //setOperandOne(operandOne + "2");
           break;
         case "Action_operand_1_attach_three":
-          setOperandOne(operandOne + "3");
+          actionFunctions[nextAction](operandOne, operandTwo, setOperandOne, setOperandTwo, setResult, setWarningMsg);
+          //setOperandOne(operandOne + "3");
           break;
         case "Action_operand_1_attach_four":
-          setOperandOne(operandOne + "4");
+          actionFunctions[nextAction](operandOne, operandTwo, setOperandOne, setOperandTwo, setResult, setWarningMsg);
+          //setOperandOne(operandOne + "4");
           break;
         case "Action_operand_1_attach_five":
-          setOperandOne(operandOne + "5");
+          actionFunctions[nextAction](operandOne, operandTwo, setOperandOne, setOperandTwo, setResult, setWarningMsg);
+          //setOperandOne(operandOne + "5");
           break;
         case "Action_operand_1_attach_six":
-          setOperandOne(operandOne + "6");
+          actionFunctions[nextAction](operandOne, operandTwo, setOperandOne, setOperandTwo, setResult, setWarningMsg);
+          //setOperandOne(operandOne + "6");
           break;
         case "Action_operand_1_attach_seven":
-          setOperandOne(operandOne + "7");
+          actionFunctions[nextAction](operandOne, operandTwo, setOperandOne, setOperandTwo, setResult, setWarningMsg);
+          //setOperandOne(operandOne + "7");
           break;
         case "Action_operand_1_attach_eight":
-          setOperandOne(operandOne + "8");
+          actionFunctions[nextAction](operandOne, operandTwo, setOperandOne, setOperandTwo, setResult, setWarningMsg);
+          //setOperandOne(operandOne + "8");
           break;
         case "Action_operand_1_attach_nine":
-          setOperandOne(operandOne + "9");
+          actionFunctions[nextAction](operandOne, operandTwo, setOperandOne, setOperandTwo, setResult, setWarningMsg);
+          //setOperandOne(operandOne + "9");
           break;
         case "Action_waiting_for_operand_2_for_plus":
+          actionFunctions[nextAction](operandOne, operandTwo, setOperandOne, setOperandTwo, setResult, setWarningMsg);
           // do nothing
           break;
         case "Action_operand_2_attach_zero":
-          setOperandTwo(operandTwo + "0");
+          actionFunctions[nextAction](operandOne, operandTwo, setOperandOne, setOperandTwo, setResult, setWarningMsg);
+          //setOperandTwo(operandTwo + "0");
           break;
         case "Action_operand_2_attach_one":
-          setOperandTwo(operandTwo + "1");
+          actionFunctions[nextAction](operandOne, operandTwo, setOperandOne, setOperandTwo, setResult, setWarningMsg);
+          //setOperandTwo(operandTwo + "1");
           break;
         case "Action_operand_2_attach_two":
-          setOperandTwo(operandTwo + "2");
+          actionFunctions[nextAction](operandOne, operandTwo, setOperandOne, setOperandTwo, setResult, setWarningMsg);
+          //setOperandTwo(operandTwo + "2");
           break;
         case "Action_operand_2_attach_three":
-          setOperandTwo(operandTwo + "3");
+          actionFunctions[nextAction](operandOne, operandTwo, setOperandOne, setOperandTwo, setResult, setWarningMsg);
+          //setOperandTwo(operandTwo + "3");
           break;
         case "Action_operand_2_attach_four":
-          setOperandTwo(operandTwo + "4");
+          actionFunctions[nextAction](operandOne, operandTwo, setOperandOne, setOperandTwo, setResult, setWarningMsg);
+          //setOperandTwo(operandTwo + "4");
           break;
         case "Action_operand_2_attach_five":
-          setOperandTwo(operandTwo + "5");
+          actionFunctions[nextAction](operandOne, operandTwo, setOperandOne, setOperandTwo, setResult, setWarningMsg);
+          //setOperandTwo(operandTwo + "5");
           break;
         case "Action_operand_2_attach_six":
-          setOperandTwo(operandTwo + "6");
+          actionFunctions[nextAction](operandOne, operandTwo, setOperandOne, setOperandTwo, setResult, setWarningMsg);
+          //setOperandTwo(operandTwo + "6");
           break;
         case "Action_operand_2_attach_seven":
-          setOperandTwo(operandTwo + "7");
+          actionFunctions[nextAction](operandOne, operandTwo, setOperandOne, setOperandTwo, setResult, setWarningMsg);
+          //setOperandTwo(operandTwo + "7");
           break;
         case "Action_operand_2_attach_eight":
-          setOperandTwo(operandTwo + "8");
+          actionFunctions[nextAction](operandOne, operandTwo, setOperandOne, setOperandTwo, setResult, setWarningMsg);
+          //setOperandTwo(operandTwo + "8");
           break;
         case "Action_operand_2_attach_nine":
-          setOperandTwo(operandTwo + "9");
+          actionFunctions[nextAction](operandOne, operandTwo, setOperandOne, setOperandTwo, setResult, setWarningMsg);
+          //setOperandTwo(operandTwo + "9");
           break;
         case "Action_warning_10__Second_operand_is_missing":
-          setWarningMsg("Second operand is missing");
+          actionFunctions[nextAction](operandOne, operandTwo, setOperandOne, setOperandTwo, setResult, setWarningMsg);
+          //setWarningMsg("Second operand is missing");
           break;
         default:
           console.log("Error: Unknown action in default:[" + nextAction + "]");
