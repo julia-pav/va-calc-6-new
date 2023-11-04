@@ -16,13 +16,59 @@ import { ActionMap } from "../../types/types";
 import { ActionMapping } from "../../types/types";
 import ActionList from "./ActionList";
 import ActionButton from "./ActionButton";
-import Action_show_result from "./Actions/Action_show_result";
-import Action_clear from "./Actions/Action_clear";
-import Action_init from "./Actions/Action_init";
+import Action_show_result from "../../public/Actions/Action_show_result";
+import Action_clear from "../../public/Actions/Action_clear";
+import Action_init from "../../public/Actions/Action_init";
+import Action_operand_1_attach_zero from "../../public/Actions/Action_operand_1_attach_zero";
+import Action_operand_1_attach_one from "../../public/Actions/Action_operand_1_attach_one";
+import Action_operand_1_attach_two from "../../public/Actions/Action_operand_1_attach_two";
+import Action_operand_1_attach_three from "../../public/Actions/Action_operand_1_attach_three";
+import Action_operand_1_attach_four from "../../public/Actions/Action_operand_1_attach_four";
+import Action_operand_1_attach_five from "../../public/Actions/Action_operand_1_attach_five";
+import Action_operand_1_attach_six from "../../public/Actions/Action_operand_1_attach_six";
+import Action_operand_1_attach_seven from "../../public/Actions/Action_operand_1_attach_seven";
+import Action_operand_1_attach_eight from "../../public/Actions/Action_operand_1_attach_eight";
+import Action_operand_1_attach_nine from "../../public/Actions/Action_operand_1_attach_nine";
+import Action_waiting_for_operand_2_for_plus from "../../public/Actions/Action_waiting_for_operand_2_for_plus";
+import Action_operand_2_attach_zero from "../../public/Actions/Action_operand_2_attach_zero";
+import Action_operand_2_attach_one from "../../public/Actions/Action_operand_2_attach_one";
+import Action_operand_2_attach_two from "../../public/Actions/Action_operand_2_attach_two";
+import Action_operand_2_attach_three from "../../public/Actions/Action_operand_2_attach_three";
+import Action_operand_2_attach_four from "../../public/Actions/Action_operand_2_attach_four";
+import Action_operand_2_attach_five from "../../public/Actions/Action_operand_2_attach_five";
+import Action_operand_2_attach_six from "../../public/Actions/Action_operand_2_attach_six";
+import Action_operand_2_attach_seven from "../../public/Actions/Action_operand_2_attach_seven";
+import Action_operand_2_attach_eight from "../../public/Actions/Action_operand_2_attach_eight";
+import Action_operand_2_attach_nine from "../../public/Actions/Action_operand_2_attach_nine";
+import Action_warning_10__Second_operand_is_missing from "../../public/Actions/Action_warning_10__Second_operand_is_missing";
+
+
+import FileContentPopup from "./FileContentPopup";
 
 
 function CalcBase10() {
-	const [currentAction, setCurrentAction] = useState<VaScriptAction>("Action_init");
+
+ 
+
+  const [showPopup, setShowPopup] = useState(false);
+  const [fileContent, setFileContent] = useState(""); // Store the file content here
+
+
+  // Function to open the popup
+  const openPopup = () => {
+    
+    setShowPopup(true);
+  };
+
+  // Function to close the popup
+  const closePopup = () => {
+    setShowPopup(false);
+  };
+
+
+
+
+  const [currentAction, setCurrentAction] = useState<VaScriptAction>("Action_init");
 	const [previousAction, setPreviousAction] = useState<VaScriptAction>("Action_init");
 	const [directionAction, setDirectionAction] = useState<Direction>("Direction_init");
 	const [nextDirectionAction, setNextDirectionAction] = useState<Direction>("nextDirection_init");
@@ -35,28 +81,28 @@ function CalcBase10() {
 
   const actionFunctions: Record<VaScriptAction, Function> = {
     Action_init,
-    // Action_operand_1_attach_zero,
-    // Action_operand_1_attach_one,
-    // Action_operand_1_attach_two,
-    // Action_operand_1_attach_three,
-    // Action_operand_1_attach_four,
-    // Action_operand_1_attach_five,
-    // Action_operand_1_attach_six,
-    // Action_operand_1_attach_seven,
-    // Action_operand_1_attach_eight,
-    // Action_operand_1_attach_nine,
-    // Action_waiting_for_operand_2_for_plus,
-    // Action_operand_2_attach_zero,
-    // Action_operand_2_attach_one,
-    // Action_operand_2_attach_two,
-    // Action_operand_2_attach_three,
-    // Action_operand_2_attach_four,
-    // Action_operand_2_attach_five,
-    // Action_operand_2_attach_six,
-    // Action_operand_2_attach_seven,
-    // Action_operand_2_attach_eight,
-    // Action_operand_2_attach_nine,
-    // Action_warning_10__Second_operand_is_missing,
+    Action_operand_1_attach_zero,
+    Action_operand_1_attach_one,
+    Action_operand_1_attach_two,
+    Action_operand_1_attach_three,
+    Action_operand_1_attach_four,
+    Action_operand_1_attach_five,
+    Action_operand_1_attach_six,
+    Action_operand_1_attach_seven,
+    Action_operand_1_attach_eight,
+    Action_operand_1_attach_nine,
+    Action_waiting_for_operand_2_for_plus,
+    Action_operand_2_attach_zero,
+    Action_operand_2_attach_one,
+    Action_operand_2_attach_two,
+    Action_operand_2_attach_three,
+    Action_operand_2_attach_four,
+    Action_operand_2_attach_five,
+    Action_operand_2_attach_six,
+    Action_operand_2_attach_seven,
+    Action_operand_2_attach_eight,
+    Action_operand_2_attach_nine,
+    Action_warning_10__Second_operand_is_missing,
     Action_clear,
     Action_show_result
   };
@@ -87,85 +133,9 @@ function CalcBase10() {
     if (vaScript.hasOwnProperty(nextAction)) {
       console.log("currentAction in case:[" + nextAction + "]");
 
-      switch (nextAction) {
-        case "Action_init":
-          actionFunctions[nextAction](operandOne, operandTwo, setOperandOne, setOperandTwo, setResult);
-          break;
-        case "Action_clear":
-          actionFunctions[nextAction](operandOne, operandTwo, setOperandOne, setOperandTwo, setResult);
-          break;
-        case "Action_show_result":
-          actionFunctions[nextAction](operandOne, operandTwo, setOperandOne, setOperandTwo, setResult);
-          break;
-        case "Action_operand_1_attach_zero":
-          setOperandOne(operandOne + "0");
-          break;
-        case "Action_operand_1_attach_one":
-          setOperandOne(operandOne + "1");
-          break;
-        case "Action_operand_1_attach_two":
-          setOperandOne(operandOne + "2");
-          break;
-        case "Action_operand_1_attach_three":
-          setOperandOne(operandOne + "3");
-          break;
-        case "Action_operand_1_attach_four":
-          setOperandOne(operandOne + "4");
-          break;
-        case "Action_operand_1_attach_five":
-          setOperandOne(operandOne + "5");
-          break;
-        case "Action_operand_1_attach_six":
-          setOperandOne(operandOne + "6");
-          break;
-        case "Action_operand_1_attach_seven":
-          setOperandOne(operandOne + "7");
-          break;
-        case "Action_operand_1_attach_eight":
-          setOperandOne(operandOne + "8");
-          break;
-        case "Action_operand_1_attach_nine":
-          setOperandOne(operandOne + "9");
-          break;
-        case "Action_waiting_for_operand_2_for_plus":
-          // do nothing
-          break;
-        case "Action_operand_2_attach_zero":
-          setOperandTwo(operandTwo + "0");
-          break;
-        case "Action_operand_2_attach_one":
-          setOperandTwo(operandTwo + "1");
-          break;
-        case "Action_operand_2_attach_two":
-          setOperandTwo(operandTwo + "2");
-          break;
-        case "Action_operand_2_attach_three":
-          setOperandTwo(operandTwo + "3");
-          break;
-        case "Action_operand_2_attach_four":
-          setOperandTwo(operandTwo + "4");
-          break;
-        case "Action_operand_2_attach_five":
-          setOperandTwo(operandTwo + "5");
-          break;
-        case "Action_operand_2_attach_six":
-          setOperandTwo(operandTwo + "6");
-          break;
-        case "Action_operand_2_attach_seven":
-          setOperandTwo(operandTwo + "7");
-          break;
-        case "Action_operand_2_attach_eight":
-          setOperandTwo(operandTwo + "8");
-          break;
-        case "Action_operand_2_attach_nine":
-          setOperandTwo(operandTwo + "9");
-          break;
-        case "Action_warning_10__Second_operand_is_missing":
-          setWarningMsg("Second operand is missing");
-          break;
-        default:
-          console.log("Error: Unknown action in default:[" + nextAction + "]");
-      }
+      actionFunctions[nextAction](operandOne, operandTwo, setOperandOne, setOperandTwo, setResult, setWarningMsg);
+
+      
     } else {
       switch (nextAction) {
         default:
@@ -178,13 +148,48 @@ function CalcBase10() {
     setDirectionAction(direction);
     setPreviousAction(currentAction);
     setCurrentAction(nextAction);
+
+
+  // Specify the path to the text file in the public folder currentAction
+  const filePath = './Actions/' + nextAction + '.tsx';
+
+  fetch(filePath)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Failed to fetch file content');
+      }
+      return response.text();
+    })
+    .then((text) => {
+      setFileContent(text);
+    })
+    .catch((error) => {
+      console.error('Error fetching file content:', error);
+    });
+
+
   }
   return (
     // @ts-ignore
     <VStack p={2}>
       <Text fontSize="50px" color="gray">
-        va-calculator (base 10)
+        va-calculator (base 10) 
       </Text>
+      <div className="">
+          <Text as="i" fontSize="12px" color="blue">
+          <strong>
+            {currentAction}
+          </strong>
+          </Text>
+          <Text as="i" fontSize="12px" color="grey">
+          &nbsp;is completed<div>
+      <button onClick={openPopup}>Open Popup</button>
+      {showPopup && (
+        <FileContentPopup content={fileContent} onClose={closePopup} />
+      )}
+    </div>
+          </Text>
+        </div>
       <Stack direction={{ base: "column", md: "row" }} spacing={4}>
         <div>
           <Text fontSize="25px" color="gray">
@@ -193,7 +198,7 @@ function CalcBase10() {
           <Text fontSize="25px" color="black">
             &nbsp;
           </Text>
-          <Text as="i" fontSize="25px" color="red">
+          <Text as="i" fontSize="16px" color="red">
             {warningMsg}
           </Text>
 
