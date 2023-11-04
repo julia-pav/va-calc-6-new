@@ -16,39 +16,26 @@ import { ActionMap } from "../../types/types";
 import { ActionMapping } from "../../types/types";
 import ActionList from "./ActionList";
 import ActionButton from "./ActionButton";
-import Action_show_result from "./Actions/Action_show_result";
+import Action_show_result from "../../public/Actions/Action_show_result";
 import Action_clear from "../../public/Actions/Action_clear";
-import Action_init from "./Actions/Action_init";
+import Action_init from "../../public/Actions/Action_init";
+import Action_operand_1_attach_zero from "../../public/Actions/Action_operand_1_attach_zero";
+import Action_operand_1_attach_one from "../../public/Actions/Action_operand_1_attach_one";
+import Action_operand_1_attach_two from "../../public/Actions/Action_operand_1_attach_two";
+
+
+
 
 import FileContentPopup from "./FileContentPopup";
 
 
 function CalcBase10() {
 
+ 
+
   const [showPopup, setShowPopup] = useState(false);
   const [fileContent, setFileContent] = useState(""); // Store the file content here
 
-
-  // Specify the path to the text file in the public folder
-  const filePath = './Actions/Action_clear.tsx'; // Replace with the actual path to your text file
-
-  fetch(filePath)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error('Failed to fetch file content');
-      }
-      return response.text();
-    })
-    .then((text) => {
-      setFileContent(text);
-    })
-    .catch((error) => {
-      console.error('Error fetching file content:', error);
-    });
-
-
-
- 
 
   // Function to open the popup
   const openPopup = () => {
@@ -77,9 +64,9 @@ function CalcBase10() {
 
   const actionFunctions: Record<VaScriptAction, Function> = {
     Action_init,
-    // Action_operand_1_attach_zero,
-    // Action_operand_1_attach_one,
-    // Action_operand_1_attach_two,
+    Action_operand_1_attach_zero,
+    Action_operand_1_attach_one,
+    Action_operand_1_attach_two,
     // Action_operand_1_attach_three,
     // Action_operand_1_attach_four,
     // Action_operand_1_attach_five,
@@ -140,13 +127,16 @@ function CalcBase10() {
           actionFunctions[nextAction](operandOne, operandTwo, setOperandOne, setOperandTwo, setResult);
           break;
         case "Action_operand_1_attach_zero":
-          setOperandOne(operandOne + "0");
+          actionFunctions[nextAction](operandOne, operandTwo, setOperandOne, setOperandTwo, setResult);
+          //setOperandOne(operandOne + "0");
           break;
         case "Action_operand_1_attach_one":
-          setOperandOne(operandOne + "1");
+          actionFunctions[nextAction](operandOne, operandTwo, setOperandOne, setOperandTwo, setResult);
+          //setOperandOne(operandOne + "1");
           break;
         case "Action_operand_1_attach_two":
-          setOperandOne(operandOne + "2");
+          actionFunctions[nextAction](operandOne, operandTwo, setOperandOne, setOperandTwo, setResult);
+          //setOperandOne(operandOne + "2");
           break;
         case "Action_operand_1_attach_three":
           setOperandOne(operandOne + "3");
@@ -220,6 +210,26 @@ function CalcBase10() {
     setDirectionAction(direction);
     setPreviousAction(currentAction);
     setCurrentAction(nextAction);
+
+
+  // Specify the path to the text file in the public folder currentAction
+  const filePath = './Actions/' + nextAction + '.tsx';
+
+  fetch(filePath)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Failed to fetch file content');
+      }
+      return response.text();
+    })
+    .then((text) => {
+      setFileContent(text);
+    })
+    .catch((error) => {
+      console.error('Error fetching file content:', error);
+    });
+
+
   }
   return (
     // @ts-ignore
